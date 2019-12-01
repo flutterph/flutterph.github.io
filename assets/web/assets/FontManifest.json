@@ -1,0 +1,22 @@
+[
+  {
+    "family": "ThemeFont",
+    "fonts": [
+      {
+        "asset": "fonts/font-bold.ttf",
+        "weight": 700
+      },
+      {
+        "asset": "fonts/font-regular.ttf"
+      }
+    ]
+  },
+  {
+    "family": "MaterialIcons",
+    "fonts": [
+      {
+        "asset": "fonts/MaterialIcons-Regular.ttf"
+      }
+    ]
+  }
+]

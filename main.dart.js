@@ -37312,9 +37312,9 @@ X.ot.prototype={
 aR:function(){return new X.B2(C.u)}}
 X.B2.prototype={
 R:function(a){var u,t,s,r,q,p,o,n,m=this,l=null,k=F.bi(a,!1).a,j=F.bi(a,!1).a
-j=M.bI(l,U.fH("images/preview_study_jam.jpg",l,C.dM),l,l,l,k.b,l,l,j.a)
+j=M.bI(l,U.fH("web/assets/images/preview_study_jam.jpg",l,C.dM),l,l,l,k.b,l,l,j.a)
 k=F.bi(a,!1).a.a<800?100:150
-k=M.bI(l,U.fH("images/logo_flutterph.png",l,C.dM),l,l,l,k,l,l,l)
+k=M.bI(l,U.fH("web/assets/images/logo_flutterph.png",l,C.dM),l,l,l,k,l,l,l)
 u=O.P8("Flutter Philippines",A.dC(l,l,C.l,l,l,l,l,l,l,l,l,32,l,l,l,l,!0,l,l,l,l,l,l),l)
 t=F.bi(a,!1).a.a<800?F.bi(a,!1).a.a*0.8:F.bi(a,!1).a.a*0.5
 t=M.bI(l,O.P8("A collaborative community for anyone interested in developing mobile apps using Flutter and Dart.",A.dC(l,l,C.l,l,l,l,l,l,l,l,l,16,l,l,l,l,!0,l,l,l,l,l,l),C.dD),l,l,l,l,l,new V.ah(0,8,0,0),t)
@@ -37322,10 +37322,10 @@ s=O.P8("#flutter #flutterdev #flutterdotph",A.dC(l,l,C.l,l,l,l,l,l,l,l,l,16,l,l,
 r=M.bI(l,L.Sa("Connect with us",A.dC(l,l,C.l,l,l,l,l,l,l,l,l,l,l,l,l,l,!0,l,l,l,l,l,l)),l,l,l,l,new V.ah(0,32,0,0),l,l)
 q=F.bi(a,!1).a
 p=[N.c3]
-q=M.bI(l,T.S1(H.d([M.bI(l,N.o_(U.fH("images/social_facebook.png",C.l,l),new X.B3(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("images/social_facebook_group.png",C.l,l),new X.B4(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("images/social_meetup.png",C.l,l),new X.B5(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("images/social_twitter.png",C.l,l),new X.B6(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("images/social_instagram.png",C.l,l),new X.B7(m)),l,l,l,48,l,l,48)],p),C.fj,C.fk),l,l,l,l,new V.ah(0,8,0,0),l,q.a*0.8)
+q=M.bI(l,T.S1(H.d([M.bI(l,N.o_(U.fH("web/assets/images/social_facebook.png",C.l,l),new X.B3(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("web/assets/images/social_facebook_group.png",C.l,l),new X.B4(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("web/assets/images/social_meetup.png",C.l,l),new X.B5(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("web/assets/images/social_twitter.png",C.l,l),new X.B6(m)),l,l,l,48,l,l,48),M.bI(l,N.o_(U.fH("web/assets/images/social_instagram.png",C.l,l),new X.B7(m)),l,l,l,48,l,l,48)],p),C.fj,C.fk),l,l,l,l,new V.ah(0,8,0,0),l,q.a*0.8)
 o=M.bI(l,L.Sa("Supported by",A.dC(l,l,C.l,l,l,l,l,l,l,l,l,l,l,l,l,l,!0,l,l,l,l,l,l)),l,l,l,l,l,l,l)
 n=F.bi(a,!1).a.a<800?150:200
-return new M.pH(new T.jh(C.b9,l,l,T.lb(C.dL,H.d([new T.p3(0.5,!1,j,l),M.bI(l,T.S1(H.d([new T.dt(new V.ah(32,32,32,32),T.QF(H.d([new T.dt(new V.ah(0,8,0,0),k,l),new T.dt(new V.ah(0,8,0,0),u,l),t,new T.dt(new V.ah(0,8,0,0),s,l),r,q,new T.dt(new V.ah(0,32,0,0),T.QF(H.d([o,M.bI(l,U.fH("images/logo_google_developers.png",l,C.dM),l,l,l,l,l,l,n)],p),C.dW,C.kk),l)],p),C.dW,C.fj),l)],p),C.fj,C.fk),new P.D(3708045186),l,l,l,l,l,l)],p),C.dC),l),l)},
+return new M.pH(new T.jh(C.b9,l,l,T.lb(C.dL,H.d([new T.p3(0.5,!1,j,l),M.bI(l,T.S1(H.d([new T.dt(new V.ah(32,32,32,32),T.QF(H.d([new T.dt(new V.ah(0,8,0,0),k,l),new T.dt(new V.ah(0,8,0,0),u,l),t,new T.dt(new V.ah(0,8,0,0),s,l),r,q,new T.dt(new V.ah(0,32,0,0),T.QF(H.d([o,M.bI(l,U.fH("web/assets/images/logo_google_developers.png",l,C.dM),l,l,l,l,l,l,n)],p),C.dW,C.kk),l)],p),C.dW,C.fj),l)],p),C.fj,C.fk),new P.D(3708045186),l,l,l,l,l,l)],p),C.dC),l),l)},
 $aa8:function(){return[X.ot]}}
 X.B3.prototype={
 $0:function(){$.mI().jw("open",["https://bit.ly/flutterph-facebook"])},
