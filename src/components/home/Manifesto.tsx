@@ -5,7 +5,7 @@ import s from "./manifesto.module.css";
 
 /** Self-description as published on the Flutter Philippines Luma calendar and event pages. */
 const text =
-  "Flutter Philippines is a community of designers, developers, and product builders who create experiences for any screen. We are a non-profit community, led by community leaders, technical experts, and volunteers.";
+  "Flutter Philippines is a community of designers, developers, and product builders who create experiences for any screen. We are a non-profit community, led by community leaders, engineers, designers, and volunteers.";
 
 /** Map pin, drawn on a 24x24 grid in the shape of a Google Maps marker. */
 function Pin() {

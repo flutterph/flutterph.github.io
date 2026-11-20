@@ -68,7 +68,7 @@ function SpeakerLine({ item }: { item: EventItem }) {
   const sp = item.speakers?.[0];
   if (!sp) return null;
   return (
-    <span className="flex items-center gap-2.5 pt-2">
+    <span className="flex items-center gap-2.5 pt-3">
       {sp.photo ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -94,11 +94,11 @@ function SpeakerLine({ item }: { item: EventItem }) {
               href={sp.href}
               rel="noopener noreferrer"
               aria-label={`${sp.handle ?? sp.name} on X`}
-              className="grid size-5 place-items-center rounded-full text-muted transition-colors hover:text-fg"
+              className="grid size-4 place-items-center rounded-full text-muted transition-colors hover:text-fg"
             >
               <svg
                 viewBox="0 0 24 24"
-                className="size-3"
+                className="size-[0.6875rem]"
                 fill="currentColor"
                 aria-hidden="true"
                 focusable="false"
@@ -115,6 +115,11 @@ function SpeakerLine({ item }: { item: EventItem }) {
 }
 
 function ItemRow({ item, upcoming = false }: { item: EventItem; upcoming?: boolean }) {
+  const arrow = item.href ? (
+    <span className="text-muted">
+      <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg" />
+    </span>
+  ) : null;
   const body = (
     <>
       <span
@@ -126,22 +131,19 @@ function ItemRow({ item, upcoming = false }: { item: EventItem; upcoming?: boole
         <span className="leading-snug font-medium text-pretty">{item.title}</span>
         <span className="text-sm leading-snug text-muted">{item.subtitle}</span>
         <SpeakerLine item={item} />
-        <span className="flex pt-2 sm:hidden">
+        <span className="flex items-center gap-3 pt-2.5 sm:hidden">
           <PlaceBadge item={item} />
+          {arrow}
         </span>
       </span>
-      <span className="hidden min-w-0 justify-end sm:flex">
+      <span className="hidden min-w-0 justify-items-end gap-2 sm:grid">
         <PlaceBadge item={item} />
-      </span>
-      <span className="text-muted">
-        {item.href ? (
-          <ArrowUpRight className="size-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg" />
-        ) : null}
+        {arrow}
       </span>
     </>
   );
   const grid =
-    "grid grid-cols-[4.75rem_minmax(0,1fr)_1.25rem] items-start gap-4 rounded-2xl px-3 py-4 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto_1.25rem] sm:items-center sm:px-5";
+    "grid grid-cols-[4.75rem_minmax(0,1fr)] items-start gap-4 rounded-2xl px-3 py-4 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-center sm:px-5";
   return (
     <li data-kind={item.kind}>
       {item.href ? (
