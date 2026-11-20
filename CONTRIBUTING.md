@@ -62,7 +62,7 @@ Guidelines:
 - Use [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`, `content:`, `docs:`, `chore:`.
 - Pull request titles follow `[type] Short description`, for example `[content] Add DevFest Cebu 2027`.
 - Fill in the pull request template: what changed, how you tested it, and screenshots for anything visible.
-- `master` is the live site. Changes land through reviewed pull requests and are squash-merged.
+- `main` is the live site. Changes land through reviewed pull requests and are squash-merged.
 
 ## Code of conduct
 

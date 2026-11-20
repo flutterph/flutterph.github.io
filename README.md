@@ -62,7 +62,7 @@ Run `pnpm build` (or `pnpm build:preview`) before `pnpm test:e2e` and `pnpm test
 
 ## Deploy
 
-Pushes to `master` build and publish to GitHub Pages through `.github/workflows/deploy.yml`, which also runs daily at midnight Manila time. One-time setup by a maintainer: **Settings > Pages > Source = GitHub Actions**, and the custom domain `flutter.ph`.
+Pushes to `main` build and publish to GitHub Pages through `.github/workflows/deploy.yml`, which also runs daily at midnight Manila time. One-time setup by a maintainer: **Settings > Pages > Source = GitHub Actions**, and the custom domain `flutter.ph`.
 
 Analytics is off unless the repository variable `GA_MEASUREMENT_ID` is set to a Google Analytics 4 ID (`G-...`).
 

@@ -1,12 +1,12 @@
 # Builds the static site and publishes it to GitHub Pages.
 # Requires: Settings > Pages > Source = "GitHub Actions" (one-time, by a maintainer).
-# Runs on every push to master, daily (so upcoming events roll over to past),
+# Runs on every push to main, daily (so upcoming events roll over to past),
 # and on demand.
 name: Deploy
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   schedule:
     - cron: "0 16 * * *" # 00:00 Asia/Manila
   workflow_dispatch:
