@@ -1,0 +1,23 @@
+name: Add a talk by the team
+description: A talk, workshop or booth a Flutter PH organizer gave at another event.
+title: "[talk] "
+labels: [content, talk]
+body:
+  - type: markdown
+    attributes:
+      value: Talks live in `content/talks/<year>.yaml`. Add a new item to the `talks` list, or fill this in and an organizer will.
+  - type: input
+    id: event
+    attributes: { label: Event name (exactly as written by the host) }
+    validations: { required: true }
+  - type: input
+    id: date
+    attributes: { label: Date, placeholder: "2027-03-14" }
+    validations: { required: true }
+  - type: input
+    id: session
+    attributes: { label: Session title }
+  - type: input
+    id: url
+    attributes:
+      { label: Event page link, description: Leave empty if there is no public page. Never guess. }

@@ -1,0 +1,109 @@
+/*
+ * Typewriter on scroll: words appear one at a time as the section moves up
+ * the viewport, with a caret after the word being typed. Without support or
+ * with reduced motion, the paragraph is simply shown in full.
+ */
+.typer {
+  view-timeline: --type block;
+}
+
+/* Google Maps red, darkened to 4.9:1 on white so it passes as text. */
+.place {
+  color: #d93025;
+}
+:global([data-theme="dark"]) .place {
+  color: #ff7b72;
+}
+
+.pin {
+  color: #d93025;
+}
+:global([data-theme="dark"]) .pin {
+  color: #ff7b72;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word {
+      animation: type linear both;
+      animation-timeline: --type;
+      animation-range: cover calc(18% + var(--i) * var(--step)) cover
+        calc(18% + (var(--i) + 1) * var(--step));
+    }
+
+    .word::after {
+      content: "";
+      display: inline-block;
+      width: 0.08em;
+      height: 0.95em;
+      margin-left: 0.06em;
+      vertical-align: -0.12em;
+      background: var(--c-link);
+      visibility: hidden;
+      animation: caret linear both;
+      animation-timeline: --type;
+      animation-range: inherit;
+    }
+
+    .last::after {
+      animation:
+        caret-last linear both,
+        blink 1s steps(1) infinite;
+      animation-timeline: --type, auto;
+      animation-range:
+        cover calc(18% + var(--i) * var(--step)) cover 100%,
+        normal;
+    }
+
+    /* The pin drops onto the line as the section scrolls in. */
+    .pin {
+      animation: drop linear both;
+      animation-timeline: view();
+      animation-range: entry 20% entry 90%;
+    }
+  }
+}
+
+@keyframes type {
+  from {
+    opacity: 0;
+  }
+  1%,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes caret {
+  0%,
+  99% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+@keyframes caret-last {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes drop {
+  0% {
+    translate: 0 -36px;
+  }
+  70% {
+    translate: 0 3px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}

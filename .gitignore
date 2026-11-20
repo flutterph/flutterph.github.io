@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# content collections
+.content-collections/
+
+# testing
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.lighthouseci/
+
+# env
+.env
+.env*.local
+
+# misc
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# local-only notes (research with personal names, not for the public repo)
+.local/

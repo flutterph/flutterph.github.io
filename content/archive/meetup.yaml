@@ -1,0 +1,96 @@
+# Events from the original Flutter Philippines Meetup group (2019 to 2022).
+# The group has since closed; these event pages still load on meetup.com.
+# Source: public event pages and Wayback Machine snapshots, checked 2026-11-20.
+# TODO(content): 32 events were held on Meetup; 15 are recovered here.
+source: Meetup
+events:
+  - {
+      title: "FlutterPH #32: Lunch-time with Flutter PH",
+      date: 2022-07-21,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/286707380/,
+    }
+  - {
+      title: "FlutterPH #29: Flutter Thursdays",
+      date: 2022-06-23,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/286707301/,
+    }
+  - {
+      title: "Code Generation, State Management with Cubit and Riverpod",
+      date: 2021-10-14,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/280483491/,
+    }
+  - {
+      title: "Visual Discovery and BLoC State Management",
+      date: 2021-09-09,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/280483436/,
+    }
+  - {
+      title: "Flutter Engage Extended Philippines",
+      date: 2021-03-31,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/276925301/,
+    }
+  - {
+      title: "RVMS: a practical reactive architecture for Flutter apps",
+      date: 2020-11-24,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/274731089/,
+    }
+  - {
+      title: "Webinar #2: Building AI Applications using TensorFlow Lite and Flutter",
+      date: 2020-04-08,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/269765512/,
+    }
+  - {
+      title: "Webinar #1: Flutter, it's not just for mobile anymore",
+      date: 2020-03-27,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/269500209/,
+    }
+  - {
+      title: "Meetup #3: Intro to Dart and Testing Flutter Apps with Appium",
+      date: 2020-02-27,
+      place: Taguig,
+      url: https://www.meetup.com/flutterph/events/268351354/,
+    }
+  - {
+      title: "Meetup #2: Flutter Clock Online Meetup",
+      date: 2020-01-14,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/267801654/,
+    }
+  - {
+      title: "Flutter Interact 2019 Meetup and Viewing Party",
+      date: 2019-12-11,
+      place: Pasig,
+      url: https://www.meetup.com/flutterph/events/266283702/,
+    }
+  - {
+      title: "Flutter Philippines Online Hackathon 2019",
+      date: 2019-10-14,
+      place: Online,
+      url: https://www.meetup.com/flutterph/events/265531242/,
+    }
+  - {
+      title: "Flutter Study Jam #3: PHINMA University of Pangasinan",
+      date: 2019-10-12,
+      place: Dagupan,
+      url: https://www.meetup.com/flutterph/events/265425742/,
+    }
+  - {
+      title: "Flutter Study Jam #2",
+      date: 2019-10-01,
+      place: Makati,
+      url: https://www.meetup.com/flutterph/events/265151125/,
+    }
+  - {
+      title: "Flutter Study Jam #1: Everything is a Widget and Flutter Animations",
+      date: 2019-09-24,
+      place: Taguig,
+      url: https://www.meetup.com/flutterph/events/264714372/,
+    }

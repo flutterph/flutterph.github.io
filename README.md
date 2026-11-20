@@ -1,72 +1,77 @@
-# Flutter Philippines Official Website
-by [Joshua M. de Guzman](https://joshdeguzman.com)
+# Flutter Philippines
 
-This is a demostrable Flutter for Web application using the latest changes in Flutter in the master channel. This aims to help those who are about to start building Flutter apps in the Web, be it a designer or a developer.
+The website of [Flutter Philippines](https://flutter.ph), a community of designers, developers and founders building apps with Flutter, Dart and AI. Founded in Manila in 2019.
 
-> NOTE: This are only build files to host the project in the organization's domain name, source code can be found at https://github.com/joshuadeguzman/flutterph.github.io.
+![Home page](docs/screenshots/desktop-home.jpg)
 
-### Project
+<table>
+  <tr>
+    <td width="72%"><img src="docs/screenshots/desktop-events.jpg" alt="Recent and upcoming events with the featured event and filters" /></td>
+    <td width="28%"><img src="docs/screenshots/iphone-home.jpg" alt="Home page on an iPhone" /></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/desktop-ai.jpg" alt="The AI section with official Flutter and Gemini tools" /></td>
+    <td><img src="docs/screenshots/iphone-events.jpg" alt="Events on an iPhone" /></td>
+  </tr>
+</table>
 
-#### 1. Setup
+## What's here
 
-Switch to master
+- **Home:** what the community is, where it started, the AI tools we teach, how to join, and every event we have run or spoken at.
+- **Events:** community meetups (from Luma and the old Meetup group) plus talks, workshops and open-source demos by the team. Upcoming and past are worked out from the date in Manila time, and the site rebuilds daily so events roll over on their own.
+- **Content as files:** events, talks, people and partners live in `content/` as small MDX or YAML files. Anyone can add one with a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-```
-$ flutter channel master
-$ flutter upgrade
-$ flutter config --enable-web
-```
+## Why Next.js and not Flutter web
 
-Clone repo
+The old site was a Flutter web app. Flutter web is great for apps, but a community site needs to be found on Google, shared on Facebook with a proper preview, readable by screen readers, and fast on a mid-range phone on mobile data. Those need real HTML on first load. This site is built with Next.js and exported as plain static files, so it loads instantly and costs nothing to host on GitHub Pages. We still show off Flutter through the people, talks and apps on the site.
 
-```
-$ git clone https://github.com/joshuadeguzman/flutterph.github.io
-```
+## Run it locally
 
-Download dependencies
-
-```
-$ flutter packages get
-```
-
-#### 2. Run
-
-Debug
+You need Node 24 (`nvm use` reads `.nvmrc`) and pnpm via Corepack.
 
 ```bash
-$ flutter run -d chrome --verbose
+corepack enable
+pnpm install
+pnpm dev          # http://localhost:3000
 ```
 
-Release
+To try it on your phone, run `pnpm dev -H 0.0.0.0` and open `http://<your computer's LAN IP>:3000` on the same Wi-Fi.
 
-```bash
-$ flutter run -d chrome --verbose --release
-```
+## Test it
 
-#### 3. Tests
+| Command                    | What it does                                                                                 |
+| -------------------------- | -------------------------------------------------------------------------------------------- |
+| `pnpm build && pnpm start` | Production build in `out/`, served the way GitHub Pages serves it                            |
+| `pnpm build:preview`       | Same, but includes sample content                                                            |
+| `pnpm test`                | Unit tests (dates, visibility rules)                                                         |
+| `pnpm test:e2e`            | Accessibility (axe) in light and dark, legacy URLs, at 360 to 1440 px in Chromium and WebKit |
+| `pnpm test:perf`           | Scroll smoothness in Chromium and WebKit, fails on jank or layout shift                      |
+| `pnpm lighthouse`          | Lighthouse mobile against the production build, 95+ budgets                                  |
+| `pnpm check`               | Everything above that CI runs on every pull request                                          |
 
-```bash
-$ flutter run test/<TEST_FILE.dart>
-```
+Run `pnpm build` (or `pnpm build:preview`) before `pnpm test:e2e` and `pnpm test:perf`.
 
-### Support
+## How it's built
 
-I would highly appreciate if we connect on Twitter or Github, and discuss Fluttery things over a cup of coffee ☕.
-* Twitter: [@joshuamdeguzman](https://twitter.com/joshuamdeguzman)
-* Github: [@joshuadeguzman](https://github.com/joshuadeguzman)
+- Next.js 16 App Router with React Server Components, exported as static files (`output: "export"`)
+- TypeScript (strict), Tailwind CSS 4 with design tokens in `src/app/globals.css`
+- Content Collections with Zod schemas in `content-collections.ts`: a wrong date or a missing alt text fails the build with a readable message
+- Google Sans and Google Sans Code (SIL Open Font License), self-hosted
+- Motion is CSS scroll-driven animation, transform-only, and switches off with reduced motion
+- About 3 KB of our own JavaScript on top of the framework
 
-## Cool stuff to try out!
-Awesome Flutter
-* https://github.com/Solido/awesome-flutter
+## Deploy
 
-Flutter Showcase by 2dimensions
-* https://play.google.com/store/apps/details?id=com.two_dimensions.showcaseapp&hl=en_US
-* https://play.google.com/store/apps/details?id=com.two_dimensions.showcaseapp&hl=en_US
+Pushes to `main` build and publish to GitHub Pages through `.github/workflows/deploy.yml`, which also runs daily at midnight Manila time. One-time setup by a maintainer: **Settings > Pages > Source = GitHub Actions**, and the custom domain `flutter.ph`.
 
-Flutter Developer Quest
-* https://play.google.com/store/apps/details?id=dev.flutter.devRpg&hl=en
-* https://apps.apple.com/us/app/flutter-developer-quest/id1455994402
+Analytics is off unless the repository variable `GA_MEASUREMENT_ID` is set to a Google Analytics 4 ID (`G-...`).
 
-### License
+Old links such as `/join`, `/ask`, `/meetups/3` and `/webinars/1` still work.
 
-flutterph.github.io is released under the BSD-3 Clause License. See [LICENSE](https://github.com/joshuadeguzman/fluterph.github.io/blob/master/LICENSE) for details.
+## Brand
+
+Flutter and the related logo are trademarks of Google LLC. Flutter Philippines is a community-run group and is not endorsed by or affiliated with Google LLC. Our logo is the Flutter logo in Philippine flag colors, as the Flutter brand guidelines allow for local user groups.
+
+## License
+
+BSD 3-Clause. See [LICENSE](LICENSE).

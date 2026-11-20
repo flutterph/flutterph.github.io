@@ -1,0 +1,65 @@
+/* Filter chips: native radio buttons styled as pills. Filtering is CSS-only (:has). */
+.chip {
+  cursor: pointer;
+}
+.chip > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  padding-inline: 1rem;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background: var(--c-surface);
+  color: var(--c-muted);
+  transition:
+    background-color 150ms,
+    color 150ms;
+}
+.chip:hover > span {
+  background: var(--c-surface-2);
+  color: var(--c-fg);
+}
+.chip input:checked + span {
+  background: var(--c-ink);
+  color: var(--c-on-ink);
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 3px;
+}
+
+.events:has(input[value="community"]:checked) [data-kind="team"],
+.events:has(input[value="team"]:checked) [data-kind="community"],
+.events:has(input[value="community"]:checked) .group[data-has-community="false"],
+.events:has(input[value="team"]:checked) .group[data-has-team="false"] {
+  display: none;
+}
+
+.group {
+  scroll-margin-top: 6rem;
+}
+
+/* Featured event: black and premium, with a single gold accent. */
+.featured {
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgb(255 198 58 / 0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #15171c 0%, #0b0d12 100%);
+}
+/* Gold foil label: a light-to-deep gold gradient clipped to the text. */
+.featuredLabel {
+  width: fit-content;
+  background: linear-gradient(100deg, #fff1c1 0%, #f3cf6b 35%, #c99a2e 65%, #f6dd8f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.featuredNumber {
+  color: #ffd46b; /* 13.6:1 on the card */
+}
+
+/* "View all" hides itself once opened. */
+.more[open] > summary {
+  display: none;
+}

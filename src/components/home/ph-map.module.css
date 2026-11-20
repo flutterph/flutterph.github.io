@@ -1,0 +1,203 @@
+/*
+ * The Philippines, rising into place as the About section scrolls in:
+ * the map tilts from a steep 3D angle to a gentle one, the island groups come
+ * up north to south, and a pin drops on Manila. CSS only. The resting state
+ * (no support, reduced motion) is the finished map with the pin.
+ */
+@property --tilt {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 24deg;
+}
+
+.scene {
+  position: relative;
+  perspective: 1400px;
+  perspective-origin: 50% 20%;
+  display: grid;
+  place-items: center;
+  padding-block: 1rem 2rem;
+}
+
+.plane {
+  position: relative;
+  width: min(70%, 22rem);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt)) rotateZ(-6deg);
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.island {
+  fill: #d3dae4;
+  stroke: var(--c-bg);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+.luzon {
+  fill: #c7d3e2;
+}
+:global([data-theme="dark"]) .island {
+  fill: #2b3342;
+}
+:global([data-theme="dark"]) .luzon {
+  fill: #33405a;
+}
+
+.shadow {
+  position: absolute;
+  inset: auto 10% 0;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(11 13 18 / 0.14), transparent);
+}
+
+/* The pin stands upright: it counter-rotates by the plane's tilt. */
+.pin {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 2.75rem;
+  translate: -50% -100%;
+  transform-origin: 50% 100%;
+  transform: rotateZ(6deg) rotateX(calc(-1 * var(--tilt)));
+  color: #d93025;
+  filter: drop-shadow(0 4px 6px rgb(217 48 37 / 0.35));
+}
+
+.ring {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 1.5rem;
+  height: 1.5rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 2px solid #d93025;
+  opacity: 0.6;
+}
+
+.label {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  translate: 1.75rem -3.6rem;
+  transform: rotateZ(6deg) rotateX(calc(-1 * var(--tilt)));
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--c-bg);
+  box-shadow: var(--shadow-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #d93025;
+  white-space: nowrap;
+}
+:global([data-theme="dark"]) .pin,
+:global([data-theme="dark"]) .label {
+  color: #ff7b72;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scene {
+      view-timeline: --map block;
+    }
+    .plane,
+    .island,
+    .pin,
+    .label {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --map;
+    }
+    .plane {
+      animation-name: tilt;
+      animation-range: entry 0% cover 50%;
+    }
+    .luzon {
+      animation-name: rise;
+      animation-range: entry 10% entry 80%;
+    }
+    .visayas {
+      animation-name: rise;
+      animation-range: entry 25% entry 95%;
+    }
+    .mindanao {
+      animation-name: rise;
+      animation-range: entry 40% cover 45%;
+    }
+    .pin {
+      animation-name: drop;
+      animation-range: cover 30% cover 50%;
+    }
+    .label {
+      animation-name: appear;
+      animation-range: cover 42% cover 55%;
+    }
+    .ring {
+      animation: pulse 2.4s ease-out infinite;
+    }
+  }
+}
+
+@keyframes tilt {
+  from {
+    --tilt: 62deg;
+    scale: 0.86;
+  }
+  to {
+    --tilt: 24deg;
+    scale: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 36px;
+    opacity: 0;
+  }
+  to {
+    translate: 0 0;
+    opacity: 1;
+  }
+}
+
+@keyframes drop {
+  0% {
+    translate: -50% -260%;
+    opacity: 0;
+  }
+  60% {
+    translate: -50% -92%;
+    opacity: 1;
+  }
+  100% {
+    translate: -50% -100%;
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    scale: 0.6;
+    opacity: 0.7;
+  }
+  to {
+    scale: 2.6;
+    opacity: 0;
+  }
+}
