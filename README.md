@@ -60,6 +60,12 @@ Run `pnpm build` (or `pnpm build:preview`) before `pnpm test:e2e` and `pnpm test
 - Motion is CSS scroll-driven animation, transform-only, and switches off with reduced motion
 - About 3 KB of our own JavaScript on top of the framework
 
+## Share card
+
+Links to flutter.ph show this preview on Facebook, X, LinkedIn and chat apps. It is rendered in Chromium with the site's own fonts by `pnpm og` into `public/og.jpg` (1200 x 630). Re-run it after changing the name, tagline or logo.
+
+![Share card](public/og.jpg)
+
 ## Deploy
 
 Pushes to `main` build and publish to GitHub Pages through `.github/workflows/deploy.yml`, which also runs daily at midnight Manila time. One-time setup by a maintainer: **Settings > Pages > Source = GitHub Actions**, and the custom domain `flutter.ph`.

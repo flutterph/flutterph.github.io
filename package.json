@@ -26,7 +26,8 @@
     "lighthouse": "lhci autorun",
     "analyze": "ANALYZE=true next build --webpack",
     "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build:preview && pnpm test:e2e && pnpm test:perf",
-    "test:perf": "playwright test --config playwright.perf.config.ts"
+    "test:perf": "playwright test --config playwright.perf.config.ts",
+    "og": "node scripts/build-og.mjs"
   },
   "dependencies": {
     "@fontsource-variable/google-sans": "^5.3.2",
