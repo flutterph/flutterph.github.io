@@ -4,7 +4,7 @@ import { ArrowUpRight } from "@/components/icons/Arrow";
 import { SocialIcon } from "@/components/icons/SocialIcon";
 import { PillLink } from "@/components/ui/PillLink";
 import { Sheet } from "@/components/ui/Sheet";
-import type { SiteEvent } from "@/lib/content";
+import type { EventItem, SiteEvent } from "@/lib/content";
 import { formatEventRange, manilaDateParts } from "@/lib/dates";
 import { learnResources } from "@/lib/learn";
 import { site, social, type SocialKey } from "@/lib/site";
@@ -17,12 +17,13 @@ type StepProps = {
   title: string;
   lede: string;
   tint: "blue" | "yellow" | "red";
+  panelLabel: string;
   items: string[];
   cta: { label: string; href: string };
   aside: ReactNode;
 };
 
-function Step({ index, id, label, title, lede, tint, items, cta, aside }: StepProps) {
+function Step({ index, id, label, title, lede, tint, panelLabel, items, cta, aside }: StepProps) {
   const number = String(index + 1).padStart(2, "0");
   return (
     <Sheet
@@ -55,46 +56,67 @@ function Step({ index, id, label, title, lede, tint, items, cta, aside }: StepPr
           <p className="max-w-2xl text-lg text-muted">{lede}</p>
         </div>
 
-        <div className="reveal grid items-start gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
-          <div className="grid gap-6 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
-            <ol className="grid gap-4 text-xl font-medium">
-              {items.map((item, i) => (
-                <li key={item} className="flex gap-3">
-                  <span className="text-on-tint-muted tabular-nums">{i + 1}.</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ol>
-            <PillLink href={cta.href} size="lg" className="w-fit">
+        <div className="reveal grid items-stretch gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+          <div className="grid content-between gap-6 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
+            <div className="grid gap-4">
+              <p className="text-sm font-medium text-muted">{panelLabel}</p>
+              <ol className="grid gap-3 text-lg font-medium">
+                {items.map((item, i) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-muted tabular-nums">{i + 1}.</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <PillLink href={cta.href} className="justify-self-end">
               {cta.label}
             </PillLink>
           </div>
-          <div className="min-w-0">{aside}</div>
+          <div className="grid min-w-0">{aside}</div>
         </div>
       </div>
     </Sheet>
   );
 }
 
-function NextEvent({ event }: { event: SiteEvent | undefined }) {
-  if (!event) {
-    return (
-      <div className="grid h-full content-center gap-3 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
-        <p className="text-sm font-medium text-muted">Next event</p>
-        <p className="text-2xl font-semibold tracking-[var(--tracking-heading)]">
-          Nothing on the calendar yet.
+function NextTalk({ talk }: { talk: EventItem }) {
+  return (
+    <div className="grid h-full content-between gap-6 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
+      <div className="grid gap-4">
+        <p className="text-sm font-medium text-muted">Next up from our team</p>
+        <p className="text-lg font-medium">{talk.title}</p>
+        <p className="text-muted">
+          {talk.subtitle}, {talk.location}. {talk.monthYear}.
         </p>
         <p className="text-muted">
-          New meetups appear here and on Luma first. Follow the calendar and you&apos;ll get the
+          No Flutter PH meetup is scheduled yet. Follow us on Luma and you&apos;ll get the next
           invite.
         </p>
-        <a
-          href={social.luma.href}
-          rel="noopener noreferrer"
-          className="mt-2 inline-flex w-fit items-center gap-1.5 font-medium text-link hover:underline"
-        >
-          luma.com/flutterph <ArrowUpRight />
-        </a>
+      </div>
+      <PillLink href={social.luma.href} variant="outline" className="justify-self-end">
+        Follow us on Luma <ArrowUpRight />
+      </PillLink>
+    </div>
+  );
+}
+
+function NextEvent({ event, talk }: { event: SiteEvent | undefined; talk: EventItem | undefined }) {
+  if (!event && talk) return <NextTalk talk={talk} />;
+  if (!event) {
+    return (
+      <div className="grid h-full content-between gap-6 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
+        <div className="grid gap-4">
+          <p className="text-sm font-medium text-muted">Next event</p>
+          <p className="text-lg font-medium">Nothing on the calendar yet.</p>
+          <p className="text-muted">
+            New meetups appear here and on Luma first. Follow the calendar and you&apos;ll get the
+            invite.
+          </p>
+        </div>
+        <PillLink href={social.luma.href} variant="outline" className="justify-self-end">
+          Follow us on Luma <ArrowUpRight />
+        </PillLink>
       </div>
     );
   }
@@ -129,7 +151,7 @@ function NextEvent({ event }: { event: SiteEvent | undefined }) {
         </div>
       </div>
       {event.rsvpUrl ? (
-        <PillLink href={event.rsvpUrl} variant="outline" className="w-fit">
+        <PillLink href={event.rsvpUrl} variant="outline" className="justify-self-end">
           RSVP <ArrowUpRight />
         </PillLink>
       ) : null}
@@ -139,13 +161,13 @@ function NextEvent({ event }: { event: SiteEvent | undefined }) {
 
 function Resources() {
   return (
-    <ul className="divide-y divide-border rounded-[2rem] bg-bg shadow-pill ring-1 ring-border">
+    <ul className="divide-y divide-border overflow-hidden rounded-[2rem] bg-bg shadow-pill ring-1 ring-border">
       {learnResources.map((r) => (
         <li key={r.href}>
           <a
             href={r.href}
             rel="noopener noreferrer"
-            className="group flex items-center gap-4 px-6 py-4 transition-colors first:rounded-t-[2rem] last:rounded-b-[2rem] hover:bg-surface sm:px-7"
+            className="group flex items-center gap-4 px-6 py-4 transition-colors hover:bg-surface sm:px-7"
           >
             <span className="grid min-w-0 flex-1 gap-0.5">
               <span className="font-medium">{r.title}</span>
@@ -191,7 +213,13 @@ function Channels() {
   );
 }
 
-export function Steps({ nextEvent }: { nextEvent: SiteEvent | undefined }) {
+export function Steps({
+  nextEvent,
+  nextTalk,
+}: {
+  nextEvent: SiteEvent | undefined;
+  nextTalk: EventItem | undefined;
+}) {
   return (
     <div className={s.stack}>
       <Step
@@ -201,13 +229,14 @@ export function Steps({ nextEvent }: { nextEvent: SiteEvent | undefined }) {
         title="Meet the people building with Flutter"
         lede="Meetups, watch parties and Shipaton nights, mostly in Metro Manila and sometimes online."
         tint="blue"
+        panelLabel="How to join"
         items={[
-          "Follow Flutter PH on Luma",
-          "RSVP to the next meetup",
+          "Join the Flutter PH Facebook group",
+          "Follow us on Luma for event invites",
           "Show up, say hi, bring a friend",
         ]}
-        cta={{ label: "Follow on Luma", href: social.luma.href }}
-        aside={<NextEvent event={nextEvent} />}
+        cta={{ label: "Join the Facebook group", href: site.joinUrl }}
+        aside={<NextEvent event={nextEvent} talk={nextTalk} />}
       />
       <Step
         index={1}
@@ -216,6 +245,7 @@ export function Steps({ nextEvent }: { nextEvent: SiteEvent | undefined }) {
         title="Start building apps this weekend"
         lede="The official docs are the best place to begin. These are the pages we point newcomers to first."
         tint="yellow"
+        panelLabel="How to start"
         items={["Install Flutter", "Build the first-app codelab", "Learn Dart as you go"]}
         cta={{ label: "Start with the docs", href: learnResources[0].href }}
         aside={<Resources />}
@@ -227,12 +257,13 @@ export function Steps({ nextEvent }: { nextEvent: SiteEvent | undefined }) {
         title="Show your work, find your people"
         lede="Post your project, ask for feedback, or propose a talk for the next meetup. Everyone started somewhere."
         tint="red"
+        panelLabel="How to share"
         items={[
           "Join the Facebook group",
           "Share your project or question",
           "Propose a talk for a meetup",
         ]}
-        cta={{ label: "Join the Facebook group", href: site.joinUrl }}
+        cta={{ label: "Post in the group", href: site.joinUrl }}
         aside={<Channels />}
       />
     </div>

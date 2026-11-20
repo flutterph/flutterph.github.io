@@ -1,6 +1,7 @@
-/** Primary navigation. Points at home sections until each page ships (Phase 2 and 3). */
+/** Primary navigation, in page order. Each id is a section on the home page. */
 export const primaryNav = [
-  { label: "Events", href: "/#events" },
-  { label: "Learn", href: "/#learn" },
-  { label: "Community", href: "/#community" },
+  { label: "AI", href: "/#ai", id: "ai" },
+  { label: "Learn", href: "/#learn", id: "learn" },
+  { label: "Community", href: "/#community", id: "community" },
+  { label: "Events", href: "/#events", id: "events" },
 ] as const;

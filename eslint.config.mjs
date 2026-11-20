@@ -12,7 +12,7 @@ const config = [
     },
   },
   {
-    files: ["scripts/**"],
+    files: ["scripts/**", "e2e/**"],
     rules: { "no-console": "off" },
   },
   {

@@ -26,7 +26,8 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-pill px-3.5 py-2 text-[15px] text-muted transition-colors hover:bg-surface-2 hover:text-fg"
+                  data-nav={item.id}
+                  className="rounded-pill px-3.5 py-2 text-[15px] text-muted transition-colors hover:bg-surface-2 hover:text-fg data-[active]:bg-surface-2 data-[active]:text-fg"
                 >
                   {item.label}
                 </a>
@@ -75,7 +76,8 @@ export function Header() {
                   <li key={item.href}>
                     <a
                       href={item.href}
-                      className="block rounded-xl px-4 py-3 text-lg hover:bg-surface-2"
+                      data-nav={item.id}
+                      className="block rounded-xl px-4 py-3 text-lg hover:bg-surface-2 data-[active]:bg-surface-2"
                     >
                       {item.label}
                     </a>

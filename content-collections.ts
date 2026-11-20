@@ -127,6 +127,8 @@ const events = defineCollection({
         .default([]),
       /** Upcoming vs past is computed from the dates. Only cancellation is set by hand. */
       cancelled: z.boolean().default(false),
+      /** Sponsors with official logo files in public/images/sponsors. */
+      sponsors: z.array(z.object({ name: z.string(), logo: imagePath, url })).default([]),
       /** Registrations shown on the RSVP platform, if public. Shown as-is, never estimated. */
       registered: z.number().int().positive().optional(),
       resources: z.object({ slides: url, recording: url, photos: url }).partial().default({}),
@@ -296,6 +298,44 @@ const archive = defineCollection({
   }),
 });
 
+/**
+ * Talks and workshops the Flutter PH team gave at other communities' events.
+ * One YAML file per year.
+ */
+const talks = defineCollection({
+  name: "talks",
+  directory: "content/talks",
+  include: "*.yaml",
+  parser: "yaml",
+  schema: z.object({
+    year: z.number().int(),
+    talks: z.array(
+      z
+        .object({
+          date: isoDate,
+          endDate: isoDate.optional(),
+          event: z.string(),
+          location: z.string(),
+          /** ISO 3166-1 alpha-2 code, only for events outside the Philippines (shows a flag). */
+          country: z
+            .string()
+            .regex(/^[A-Z]{2}$/, "use a two-letter country code, e.g. ID")
+            .optional(),
+          format: z.enum(eventFormats),
+          kind: z.enum(["talk", "workshop", "masterclass", "panel"]),
+          speakers: z.array(z.string()).default([]),
+          title: z.string().optional(),
+          audience: z.number().int().positive().optional(),
+          url: url.optional(),
+        })
+        .refine((t) => !t.endDate || t.endDate >= t.date, {
+          message: "endDate must be on or after date",
+          path: ["endDate"],
+        }),
+    ),
+  }),
+});
+
 export default defineConfig({
-  content: [people, events, posts, showcase, partners, chapters, jobs, archive],
+  content: [people, events, posts, showcase, partners, chapters, jobs, archive, talks],
 });

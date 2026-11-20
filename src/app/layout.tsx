@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
+import { ScrollSpy } from "@/components/site/ScrollSpy";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { googleSans, googleSansCode } from "./fonts";
 import { themeScript } from "./theme-script";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Footer />
         <SmoothScroll />
+        <ScrollSpy />
       </body>
     </html>
   );

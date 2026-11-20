@@ -20,7 +20,7 @@
 .step::before {
   content: "";
   position: absolute;
-  inset: -25%;
+  inset: -8%;
   z-index: -1;
   /* Kept faint on purpose: color hints at the step, the content leads. */
   background:
@@ -39,18 +39,26 @@
       color-mix(in srgb, var(--tint-c) 35%, transparent) 0%,
       transparent 70%
     );
-  will-change: transform;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .step::before {
-    animation: drift 22s ease-in-out infinite alternate;
+/* The gradient field drifts with scroll position, not on a loop: it moves only
+   while the visitor scrolls, and stays on the compositor. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .step::before {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
   }
 }
 
 @keyframes drift {
+  from {
+    transform: translate3d(-4%, 4%, 0) rotate(-3deg);
+  }
   to {
-    transform: translate3d(5%, -4%, 0) rotate(4deg) scale(1.06);
+    transform: translate3d(4%, -4%, 0) rotate(3deg);
   }
 }
 
@@ -122,8 +130,7 @@
 }
 @keyframes recede {
   to {
-    opacity: 0.3;
-    filter: blur(6px);
+    opacity: 0.35;
   }
 }
 

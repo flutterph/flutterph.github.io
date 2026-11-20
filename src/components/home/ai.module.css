@@ -1,0 +1,65 @@
+/*
+ * AI section, in Gemini's palette: a near-black surface, with the blue,
+ * purple and rose gradient used for light and edges only. The glow is static
+ * (painted once), so scrolling past it costs nothing.
+ */
+.sheet {
+  --gem-bg: #131314;
+  --gem-surface: #1b1c1f;
+  --gem-1: #4796e3;
+  --gem-2: #9177c7;
+  --gem-3: #ca6673;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--gem-bg);
+  color: #fff;
+}
+
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 70%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 60% at 50% -10%, rgb(71 150 227 / 0.28) 0%, transparent 70%),
+    radial-gradient(35% 50% at 20% -5%, rgb(145 119 199 / 0.22) 0%, transparent 70%),
+    radial-gradient(35% 50% at 82% -5%, rgb(202 102 115 / 0.2) 0%, transparent 70%);
+}
+
+/* Gemini gradient on a single word, as the section's signature. */
+.gradientText {
+  background: linear-gradient(90deg, var(--gem-1), var(--gem-2) 55%, var(--gem-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 1px gradient border, drawn with backgrounds so the radius stays clean. */
+.panel {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--gem-surface), var(--gem-surface)) padding-box,
+    linear-gradient(
+        120deg,
+        rgb(71 150 227 / 0.55),
+        rgb(145 119 199 / 0.4) 50%,
+        rgb(202 102 115 / 0.45)
+      )
+      border-box;
+}
+
+.chip {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--gem-bg), var(--gem-bg)) padding-box,
+    linear-gradient(
+        120deg,
+        rgb(71 150 227 / 0.4),
+        rgb(145 119 199 / 0.3) 50%,
+        rgb(202 102 115 / 0.35)
+      )
+      border-box;
+}

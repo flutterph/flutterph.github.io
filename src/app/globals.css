@@ -219,9 +219,10 @@ html.lenis body {
 }
 
 /*
- * Scroll reveal. Sections rise, scale up and come into focus as they enter
- * the viewport. Transform and blur only (no opacity), so text keeps full
- * contrast at every frame, and content is complete without the effect.
+ * Scroll reveal. Sections rise into place as they enter the viewport.
+ * Transform only (no opacity, no filter): text keeps full contrast at every
+ * frame, content is complete without the effect, and it stays on the
+ * compositor in Safari, Chrome and Firefox alike.
  */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -238,18 +239,16 @@ html.lenis body {
   }
 }
 
+/* Translate only: no blur or scale, which Safari re-rasterizes every frame. */
 @keyframes reveal {
   from {
-    translate: 0 56px;
-    scale: 0.96;
-    filter: blur(10px);
+    translate: 0 48px;
   }
 }
 
 @keyframes reveal-sheet {
   from {
-    translate: 0 96px;
-    scale: 0.92;
+    translate: 0 80px;
   }
 }
 

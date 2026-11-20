@@ -19,6 +19,8 @@ export default defineConfig({
   testDir: "./e2e",
   outputDir: "./test-results/artifacts",
   fullyParallel: true,
+  // Seven browser projects share one machine; cap workers so axe scans do not time out.
+  workers: process.env.CI ? 2 : 4,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : [["list"]],
@@ -26,16 +28,25 @@ export default defineConfig({
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
   },
-  projects: viewports.map((v) => ({
-    name: v.name,
-    use: {
-      ...devices["Desktop Chrome"],
-      viewport: { width: v.width, height: v.height },
-      isMobile: v.isMobile,
-      hasTouch: v.isMobile,
-      deviceScaleFactor: v.isMobile ? 2 : 1,
+  testIgnore: ["**/perf.spec.ts"],
+  projects: [
+    ...viewports.map((v) => ({
+      name: v.name,
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: v.width, height: v.height },
+        isMobile: v.isMobile,
+        hasTouch: v.isMobile,
+        deviceScaleFactor: v.isMobile ? 2 : 1,
+      },
+    })),
+    // Safari's engine, on a phone and on a desktop.
+    { name: "webkit-iphone-390", use: { ...devices["iPhone 15"] } },
+    {
+      name: "webkit-desktop-1440",
+      use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
     },
-  })),
+  ],
   webServer: {
     command: "pnpm start",
     port: PORT,
