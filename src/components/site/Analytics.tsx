@@ -1,14 +1,15 @@
 import Script from "next/script";
+import { site } from "@/lib/site";
 
 /**
  * Google Analytics 4. Replaces the old Universal Analytics tag
  * (UA-121652877-4), which Google shut down in 2023 and which collects nothing.
  *
- * Off unless NEXT_PUBLIC_GA_MEASUREMENT_ID (a "G-..." ID) is set at build time,
- * and never loaded in development. Ads storage is denied; no personal data is
+ * Uses site.gaMeasurementId (src/lib/site.ts), or NEXT_PUBLIC_GA_MEASUREMENT_ID
+ * to override it. Off when neither is set, and never loaded in development. Ads storage is denied; no personal data is
  * sent by the site itself.
  */
-const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || site.gaMeasurementId;
 
 export function Analytics() {
   if (!id || process.env.NODE_ENV !== "production" || !/^G-[A-Z0-9]+$/.test(id)) return null;

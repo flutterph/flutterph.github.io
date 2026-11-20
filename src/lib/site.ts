@@ -14,6 +14,12 @@ export const site = {
   repo: "https://github.com/flutterph/flutterph.github.io",
   /** Primary call to action. go.flutter.ph/join is a separate redirect service; keep its DNS record untouched. */
   joinUrl: "https://go.flutter.ph/join",
+  /**
+   * Google Analytics 4 measurement ID ("G-..."). Public by design: it ships in every page.
+   * The old site used Universal Analytics UA-121652877-4, which Google retired in 2023.
+   * TODO(content): paste the GA4 ID from Google Analytics > Admin > Data streams > Web.
+   */
+  gaMeasurementId: "",
   /** Wording required by the Flutter brand guidelines for community websites (docs.flutter.dev/brand). */
   affiliation:
     "Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.",
