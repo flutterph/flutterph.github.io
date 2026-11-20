@@ -34,7 +34,7 @@ jobs:
         env:
           NEXT_PUBLIC_SITE_URL: https://flutter.ph
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: out
 
