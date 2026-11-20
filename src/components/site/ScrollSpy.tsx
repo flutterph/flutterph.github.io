@@ -38,7 +38,10 @@ export function ScrollSpy() {
       { rootMargin: "-45% 0px -50% 0px" },
     );
     for (const el of sections) observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      setActive(null);
+    };
   }, []);
   return null;
 }

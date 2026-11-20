@@ -18,6 +18,7 @@ test.describe("legacy flutter.ph URLs keep working", () => {
         expect(html).toContain(`content="0; url=${target.to}"`);
         expect(html).toContain(`href="${target.to}"`);
         expect(html).toContain('name="robots" content="noindex');
+        expect(html).not.toContain('rel="canonical"');
       });
     }
   }
