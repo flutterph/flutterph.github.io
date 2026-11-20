@@ -80,6 +80,8 @@ const people = defineCollection({
 
 const eventTypes = [
   "meetup",
+  "watch-party",
+  "social",
   "study-jam",
   "workshop",
   "io-extended",
@@ -125,6 +127,8 @@ const events = defineCollection({
         .default([]),
       /** Upcoming vs past is computed from the dates. Only cancellation is set by hand. */
       cancelled: z.boolean().default(false),
+      /** Registrations shown on the RSVP platform, if public. Shown as-is, never estimated. */
+      registered: z.number().int().positive().optional(),
       resources: z.object({ slides: url, recording: url, photos: url }).partial().default({}),
       sample,
       content,
@@ -213,11 +217,14 @@ const partners = defineCollection({
   include: "*.mdx",
   schema: z.object({
     name: z.string(),
-    logo: imagePath,
+    /** Official logo file, added with the owner's permission. Without one, the name is shown as text. */
+    logo: imagePath.optional(),
     logoAlt: alt.optional(),
     url,
     tier: z.enum(["community", "venue", "sponsor", "supporter"]),
-    since: z.number().int().min(2017).max(2100),
+    since: z.number().int().min(2017).max(2100).optional(),
+    /** Lower numbers show first in the "Supported by" strip. */
+    order: z.number().int().default(100),
     sample,
     content,
   }),
@@ -267,6 +274,28 @@ const jobs = defineCollection({
   transform: (doc) => ({ ...doc, slug: doc._meta.path }),
 });
 
+/**
+ * Older events from the closed Meetup group (meetup.com/flutterph), recovered
+ * from public event pages and the Wayback Machine. One YAML file, a list.
+ */
+const archive = defineCollection({
+  name: "archive",
+  directory: "content/archive",
+  include: "*.yaml",
+  parser: "yaml",
+  schema: z.object({
+    source: z.string(),
+    events: z.array(
+      z.object({
+        title: z.string(),
+        date: isoDate,
+        place: z.string(),
+        url,
+      }),
+    ),
+  }),
+});
+
 export default defineConfig({
-  content: [people, events, posts, showcase, partners, chapters, jobs],
+  content: [people, events, posts, showcase, partners, chapters, jobs, archive],
 });

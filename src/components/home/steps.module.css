@@ -1,0 +1,147 @@
+/*
+ * Three step sheets. Each carries a slow-drifting gradient in its flag tint.
+ * On tall desktop screens they pin and stack; the sheet underneath scales
+ * back, dims and softens as the next one slides over, driven by the incoming
+ * sheet's scroll position (CSS scroll-driven animation, no JavaScript).
+ */
+.stack {
+  display: grid;
+  gap: 12px;
+  timeline-scope: --step-1, --step-2;
+}
+
+.step {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Flag-tint gradient field, drifting slowly behind the content. */
+.step::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: -1;
+  background:
+    radial-gradient(38% 45% at 18% 22%, var(--tint-a) 0%, transparent 70%),
+    radial-gradient(42% 50% at 86% 72%, var(--tint-b) 0%, transparent 70%),
+    radial-gradient(30% 36% at 62% 8%, var(--tint-c) 0%, transparent 70%);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step::before {
+    animation: drift 22s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(5%, -4%, 0) rotate(4deg) scale(1.06);
+  }
+}
+
+.blue {
+  --tint-a: var(--c-tint-blue);
+  --tint-b: var(--c-tint-yellow);
+  --tint-c: var(--c-tint-blue);
+}
+.yellow {
+  --tint-a: var(--c-tint-yellow);
+  --tint-b: var(--c-tint-orange);
+  --tint-c: var(--c-tint-blue);
+}
+.red {
+  --tint-a: var(--c-tint-red);
+  --tint-b: var(--c-tint-orange);
+  --tint-c: var(--c-tint-yellow);
+}
+
+.s1 {
+  view-timeline: --step-1 block;
+}
+.s2 {
+  view-timeline: --step-2 block;
+}
+
+@media (min-width: 1024px) and (min-height: 760px) {
+  .step {
+    position: sticky;
+    top: calc(env(safe-area-inset-top) + 84px + var(--i) * 16px);
+    min-height: calc(100svh - 120px);
+    transform-origin: 50% 0;
+    box-shadow: 0 -24px 48px -28px rgb(11 13 18 / 0.22);
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .s0,
+      .s1,
+      .s0 .content,
+      .s1 .content {
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-range: entry 0% entry 100%;
+      }
+      .s0 {
+        animation-name: shrink;
+        animation-timeline: --step-1;
+      }
+      .s1 {
+        animation-name: shrink;
+        animation-timeline: --step-2;
+      }
+      .s0 .content {
+        animation-name: recede;
+        animation-timeline: --step-1;
+      }
+      .s1 .content {
+        animation-name: recede;
+        animation-timeline: --step-2;
+      }
+    }
+  }
+}
+
+@keyframes shrink {
+  to {
+    scale: 0.94;
+  }
+}
+@keyframes recede {
+  to {
+    opacity: 0.3;
+    filter: blur(6px);
+  }
+}
+
+.bar {
+  height: 4px;
+  width: min(14rem, 60vw);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c-fg) 12%, transparent);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: var(--progress);
+  border-radius: inherit;
+  background: var(--c-ink);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fill {
+      animation: grow linear both;
+      animation-timeline: view();
+      animation-range: entry 40% entry 100%;
+    }
+  }
+}
+
+@keyframes grow {
+  from {
+    width: calc(var(--progress) - 33.333%);
+  }
+}

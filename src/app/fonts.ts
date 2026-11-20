@@ -1,31 +1,31 @@
 import localFont from "next/font/local";
 
 /**
- * Fonts are self-hosted from @fontsource-variable packages (Latin subset,
- * which covers ñ and Ñ), so builds and dev need no network access.
+ * Google Sans and Google Sans Code, open-sourced by Google under the SIL Open
+ * Font License 1.1 and self-hosted from @fontsource (Latin subset, includes
+ * ñ and Ñ). One 36 KB variable file covers every heading and body weight.
  */
-export const display = localFont({
-  src: "../../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2",
-  variable: "--font-bricolage",
-  weight: "200 800",
+export const googleSans = localFont({
+  src: "../../node_modules/@fontsource-variable/google-sans/files/google-sans-latin-wght-normal.woff2",
+  variable: "--font-google-sans",
+  weight: "400 700",
   display: "swap",
   preload: true,
   adjustFontFallback: "Arial",
 });
 
-export const sans = localFont({
-  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: "Arial",
-});
-
-export const mono = localFont({
-  src: "../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2",
-  variable: "--font-jetbrains",
-  weight: "100 800",
+export const googleSansCode = localFont({
+  src: [
+    {
+      path: "../../node_modules/@fontsource/google-sans-code/files/google-sans-code-latin-400-normal.woff2",
+      weight: "400",
+    },
+    {
+      path: "../../node_modules/@fontsource/google-sans-code/files/google-sans-code-latin-600-normal.woff2",
+      weight: "600",
+    },
+  ],
+  variable: "--font-google-sans-code",
   display: "swap",
   preload: false,
   adjustFontFallback: false,

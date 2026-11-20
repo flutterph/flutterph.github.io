@@ -1,0 +1,33 @@
+/* Each word darkens from grey to ink as it scrolls through the viewport.
+   The grey start (5.3:1) is already readable, so nothing depends on motion. */
+.word {
+  color: var(--c-subtle);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word {
+      animation: ink linear both;
+      animation-timeline: view();
+      animation-range: entry 100% cover 45%;
+    }
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  .word {
+    color: var(--c-fg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    color: var(--c-fg);
+  }
+}
+
+@keyframes ink {
+  to {
+    color: var(--c-fg);
+  }
+}

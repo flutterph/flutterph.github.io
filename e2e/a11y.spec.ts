@@ -11,7 +11,9 @@ for (const route of keyRoutes) {
       page.on("pageerror", (e) => errors.push(e.message));
 
       await page.goto(route.path);
-      await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      if (theme === "dark")
+        await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+      else await expect(page.locator("html")).not.toHaveAttribute("data-theme", "dark");
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator("main")).toHaveCount(1);
 

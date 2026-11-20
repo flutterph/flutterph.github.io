@@ -1,0 +1,24 @@
+/* Open hero, straight on the canvas: no container, room for big type and art. */
+.hero {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+  min-height: 100svh;
+  padding-top: calc(env(safe-area-inset-top) + 84px + 2.5rem);
+  padding-bottom: 2rem;
+}
+
+.logo {
+  height: clamp(9rem, 34vw, 15rem);
+  width: auto;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    padding-top: calc(env(safe-area-inset-top) + 84px + 1rem);
+  }
+  .logo {
+    height: min(30rem, 56svh);
+  }
+}

@@ -90,3 +90,14 @@ export function eventPhase(
 export function isExpired(expiresAt: string, now: Date = new Date()): boolean {
   return manilaDayKey(now) > expiresAt;
 }
+
+/** Month, day and year in Manila, for date badges: { month: "Dec", day: "5", year: "2026" }. */
+export function manilaDateParts(d: DateInput): {
+  month: string;
+  day: string;
+  year: string;
+  weekday: string;
+} {
+  const p = parts(toDate(d));
+  return { month: p.month, day: p.day, year: p.year, weekday: p.weekday };
+}
