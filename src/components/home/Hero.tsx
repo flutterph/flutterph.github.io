@@ -23,8 +23,8 @@ export function Hero() {
           Flutter Philippines
         </h1>
         <p className="max-w-xl text-xl font-medium tracking-[var(--tracking-heading)] text-muted lg:text-2xl">
-          Join thousands of developers, designers and founders building apps with Flutter, Dart and
-          AI.
+          A community for people building apps with Flutter and Dart in the Philippines. Meet other
+          developers, trade ideas and learn together.
         </p>
         <div className="flex flex-wrap justify-center gap-3 pt-1 lg:justify-start">
           <PillLink href={site.joinUrl} size="lg">

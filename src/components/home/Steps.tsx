@@ -226,8 +226,8 @@ export function Steps({
         index={0}
         id="get-involved"
         label="Come to an event"
-        title="Meet the people building with Flutter"
-        lede="Meetups, watch parties and Shipaton nights, mostly in Metro Manila and sometimes online."
+        title="Where can I meet other Flutter developers?"
+        lede="Flutter Philippines hosts meetups, watch parties and Shipaton events, mostly in Metro Manila and sometimes online. Check our Luma calendar for event dates and venues."
         tint="blue"
         panelLabel="How to join"
         items={[
@@ -242,8 +242,8 @@ export function Steps({
         index={1}
         id="learn"
         label="Learn Flutter"
-        title="Start building apps this weekend"
-        lede="The official docs are the best place to begin. These are the pages we point newcomers to first."
+        title="How do I get started with Flutter?"
+        lede="Start with the official Flutter installation guide, then try the first-app codelab. If you get stuck, ask for help in the Flutter Philippines Facebook group."
         tint="yellow"
         panelLabel="How to start"
         items={["Install Flutter", "Build the first-app codelab", "Learn Dart as you go"]}
