@@ -325,6 +325,8 @@ const talks = defineCollection({
           kind: z.enum(["talk", "workshop", "masterclass", "panel"]),
           speakers: z.array(z.string()).default([]),
           title: z.string().optional(),
+          /** The talk's real title when `title` is a varied display title for a repeat. */
+          officialTitle: z.string().optional(),
           audience: z.number().int().positive().optional(),
           url: url.optional(),
         })

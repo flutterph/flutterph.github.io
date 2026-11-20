@@ -3,6 +3,8 @@
 # Product feedback sessions with Google teams are left out on purpose until
 # confirmed they can be public (Google Cloud Next, Apr 24; Build the Future
 # with Agentic AI, Singapore, Aug 5; I/O Connect Shanghai, Aug 12).
+# `title` is what the site shows. Where the same talk was given more than once,
+# repeats get a varied display title and keep the real one in `officialTitle`.
 year: 2026
 talks:
   - date: 2026-02-21
@@ -20,7 +22,8 @@ talks:
     format: in-person
     kind: talk
     speakers: [joshua-de-guzman]
-    title: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
+    title: "Agentic Coding for Flutter with Antigravity and Gemini 3 Pro"
+    officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 400
   - date: 2026-03-21
     event: Build with AI Manila
@@ -28,7 +31,8 @@ talks:
     format: in-person
     kind: workshop
     speakers: [joshua-de-guzman]
-    title: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
+    title: "Hands-on: build a Flutter app with Antigravity and Gemini 3 Pro"
+    officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 273
   - date: 2026-05-09
     event: Build with AI x IWD (GDG Baguio)
@@ -36,7 +40,8 @@ talks:
     format: in-person
     kind: workshop
     speakers: [joshua-de-guzman]
-    title: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
+    title: "Agentic Flutter development, from prompt to app, with Antigravity and Gemini 3 Pro"
+    officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 217
   - date: 2026-06-06
     event: "GDG Cloud Manila: Build with AI"
@@ -107,4 +112,5 @@ talks:
     format: in-person
     kind: talk
     speakers: [joshua-de-guzman]
-    title: Ship agents by talking to your agent using agents-cli
+    title: "From prompt to deployed agent with agents-cli"
+    officialTitle: "Ship agents by talking to your agent using agents-cli"
