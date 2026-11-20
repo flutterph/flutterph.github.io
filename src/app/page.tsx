@@ -16,7 +16,6 @@ export default function HomePage() {
   const now = new Date();
   const highlight = getHighlightEvent(now);
   const items = getEventItems(now);
-  const past = items.past.filter((i) => i.key !== `e-${highlight?.slug}`);
 
   return (
     <main
@@ -33,7 +32,7 @@ export default function HomePage() {
       />
       <PastEvents
         upcoming={items.upcoming}
-        past={past}
+        past={items.past}
         highlight={highlight}
         archive={getArchiveEvents()}
       />
