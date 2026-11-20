@@ -19,11 +19,17 @@ export default defineConfig({
       name: "chromium-desktop",
       use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
     },
-    {
-      name: "webkit-desktop",
-      use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
-    },
-    { name: "webkit-iphone", use: { ...devices["iPhone 15"] } },
+    // Headless WebKit on Linux CI runners has no GPU and throttles animation
+    // frames, so its timings mean nothing there. WebKit runs locally (macOS).
+    ...(process.env.CI
+      ? []
+      : [
+          {
+            name: "webkit-desktop",
+            use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
+          },
+          { name: "webkit-iphone", use: { ...devices["iPhone 15"] } },
+        ]),
   ],
   webServer: {
     command: "pnpm start",
