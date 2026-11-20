@@ -8,7 +8,7 @@ const text =
 export function Manifesto() {
   const words = text.split(" ");
   return (
-    <Sheet aria-labelledby="about-title" className="px-6 py-20 sm:px-12 sm:py-28">
+    <Sheet aria-labelledby="about-title" className="reveal-sheet px-6 py-20 sm:px-12 sm:py-28">
       <h2 id="about-title" className="sr-only">
         About Flutter Philippines
       </h2>

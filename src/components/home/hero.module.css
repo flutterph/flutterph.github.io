@@ -22,3 +22,22 @@
     height: min(30rem, 56svh);
   }
 }
+
+/* As the visitor scrolls away, the mark drifts up and tilts slightly. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .drift {
+      animation: drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+  }
+}
+
+@keyframes drift {
+  to {
+    translate: 0 -12svh;
+    rotate: -8deg;
+    scale: 0.88;
+  }
+}

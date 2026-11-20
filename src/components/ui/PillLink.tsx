@@ -1,9 +1,14 @@
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "ink" | "outline" | "on-dark" | "on-dark-outline";
+/**
+ * ink: primary. light: white fill for use on the grey canvas or tinted panels (no border).
+ * outline: for use on a surface of the same color as the button, where a border is needed.
+ */
+type Variant = "ink" | "light" | "outline" | "on-dark" | "on-dark-outline";
 
 const variants: Record<Variant, string> = {
   ink: "bg-ink text-on-ink hover:bg-ink/85",
+  light: "bg-bg text-fg shadow-pill hover:bg-surface",
   outline: "bg-bg text-fg ring-1 ring-border-strong ring-inset hover:bg-surface",
   "on-dark": "bg-white text-[#0b0d12] hover:bg-white/85",
   "on-dark-outline": "text-white ring-1 ring-white/40 ring-inset hover:bg-white/10",

@@ -6,7 +6,7 @@
  */
 .stack {
   display: grid;
-  gap: 12px;
+  gap: var(--sheet-gap);
   timeline-scope: --step-1, --step-2;
 }
 
@@ -22,10 +22,23 @@
   position: absolute;
   inset: -25%;
   z-index: -1;
+  /* Kept faint on purpose: color hints at the step, the content leads. */
   background:
-    radial-gradient(38% 45% at 18% 22%, var(--tint-a) 0%, transparent 70%),
-    radial-gradient(42% 50% at 86% 72%, var(--tint-b) 0%, transparent 70%),
-    radial-gradient(30% 36% at 62% 8%, var(--tint-c) 0%, transparent 70%);
+    radial-gradient(
+      34% 40% at 16% 20%,
+      color-mix(in srgb, var(--tint-a) 55%, transparent) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      36% 44% at 88% 78%,
+      color-mix(in srgb, var(--tint-b) 45%, transparent) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      26% 30% at 60% 6%,
+      color-mix(in srgb, var(--tint-c) 35%, transparent) 0%,
+      transparent 70%
+    );
   will-change: transform;
 }
 
@@ -70,7 +83,6 @@
     top: calc(env(safe-area-inset-top) + 84px + var(--i) * 16px);
     min-height: calc(100svh - 120px);
     transform-origin: 50% 0;
-    box-shadow: 0 -24px 48px -28px rgb(11 13 18 / 0.22);
   }
 
   @supports (animation-timeline: view()) {

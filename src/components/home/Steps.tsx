@@ -34,10 +34,10 @@ function Step({ index, id, label, title, lede, tint, items, cta, aside }: StepPr
       <LogoWatermark
         corner={index % 2 === 0 ? "top-right" : "bottom-left"}
         className="h-[20rem] sm:h-[34rem]"
-        opacity={0.1}
+        opacity={0.06}
       />
       <div className={`${s.content} relative z-10 mx-auto grid max-w-5xl gap-10`}>
-        <div className="grid justify-items-center gap-5 text-center">
+        <div className="reveal grid justify-items-center gap-5 text-center">
           <div className="grid justify-items-center gap-2">
             <p className="text-[15px] font-medium text-muted">
               <span className="tabular-nums">{number}</span> / {label}
@@ -55,7 +55,7 @@ function Step({ index, id, label, title, lede, tint, items, cta, aside }: StepPr
           <p className="max-w-2xl text-lg text-muted">{lede}</p>
         </div>
 
-        <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+        <div className="reveal grid items-start gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
           <div className="grid gap-6 rounded-[2rem] bg-bg p-7 shadow-pill ring-1 ring-border sm:p-9">
             <ol className="grid gap-4 text-xl font-medium">
               {items.map((item, i) => (

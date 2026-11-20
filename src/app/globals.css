@@ -54,6 +54,8 @@
   --c-on-tint: #1b1f26;
   --c-on-tint-muted: #3d4450; /* >= 7.6:1 on every tint */
 
+  --sheet-gap: clamp(1.25rem, 0.9rem + 1.5vw, 2.25rem); /* space between section sheets */
+
   --shadow-pill: 0 1px 2px rgb(11 13 18 / 0.04), 0 8px 24px -8px rgb(11 13 18 / 0.12);
   --shadow-lift: 0 2px 4px rgb(11 13 18 / 0.04), 0 24px 48px -16px rgb(11 13 18 / 0.18);
 }
@@ -214,6 +216,41 @@ html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/*
+ * Scroll reveal. Sections rise, scale up and come into focus as they enter
+ * the viewport. Transform and blur only (no opacity), so text keeps full
+ * contrast at every frame, and content is complete without the effect.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+    .reveal-sheet {
+      animation: reveal-sheet linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    translate: 0 56px;
+    scale: 0.96;
+    filter: blur(10px);
+  }
+}
+
+@keyframes reveal-sheet {
+  from {
+    translate: 0 96px;
+    scale: 0.92;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

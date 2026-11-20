@@ -11,26 +11,22 @@ export function Hero() {
           id="hero-title"
           className="text-5xl font-semibold tracking-[var(--tracking-display)] lg:text-[clamp(3.75rem,1rem+5vw,6rem)]"
         >
-          <span className="block">Flutter Philippines</span>
-          <span className="mt-2 block text-[0.6em] leading-[1.08] text-subtle">
-            Designers, builders and founders crafting every pixel.
-          </span>
+          Flutter Philippines
         </h1>
-        <p className="max-w-xl text-lg text-muted">
-          A community of Filipino designers, developers and founders building for every screen with
-          Flutter and Dart.
+        <p className="max-w-2xl text-2xl font-medium tracking-[var(--tracking-heading)] text-muted lg:text-3xl">
+          A community for designers, builders and founders crafting every pixel.
         </p>
         <div className="flex flex-wrap justify-center gap-3 pt-1 lg:justify-start">
           <PillLink href={site.joinUrl} size="lg">
             Join the community
           </PillLink>
-          <PillLink href="#events" variant="outline" size="lg">
+          <PillLink href="#events" variant="light" size="lg">
             See what we&apos;ve done
           </PillLink>
         </div>
       </div>
       <div className="grid place-items-center">
-        <Logo className={s.logo} />
+        <Logo className={`${s.logo} ${s.drift}`} />
       </div>
     </section>
   );

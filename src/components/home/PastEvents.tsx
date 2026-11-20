@@ -20,7 +20,7 @@ const typeLabel: Record<SiteEvent["type"], string> = {
 
 function Highlight({ event }: { event: SiteEvent }) {
   return (
-    <article className="relative grid gap-6 overflow-hidden rounded-[2rem] bg-tint-orange p-7 text-on-tint sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+    <article className="reveal relative grid gap-6 overflow-hidden rounded-[2rem] bg-tint-orange p-7 text-on-tint sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
       <div className="relative z-10 grid gap-4">
         <p className="text-[15px] font-medium text-on-tint-muted">Our biggest gathering so far</p>
         <h3 className="text-3xl font-semibold tracking-[var(--tracking-display)]">{event.title}</h3>
@@ -97,7 +97,7 @@ function Archive({ events }: { events: ArchiveEvent[] }) {
   const first = events.at(-1)?.date.slice(0, 4);
   const last = events[0]?.date.slice(0, 4);
   return (
-    <details className="group rounded-[2rem] bg-surface">
+    <details className="reveal group rounded-[2rem] bg-surface">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-[2rem] px-6 py-5 hover:bg-surface-2 sm:px-8 [&::-webkit-details-marker]:hidden">
         <span className="grid gap-0.5">
           <span className="text-lg font-medium">
@@ -155,7 +155,7 @@ export function PastEvents({
     <Sheet
       id="events"
       aria-labelledby="events-title"
-      className="scroll-mt-24 px-5 py-14 sm:px-10 sm:py-20"
+      className="reveal-sheet scroll-mt-24 px-5 py-14 sm:px-10 sm:py-20"
     >
       <div className="mx-auto grid max-w-5xl gap-10">
         <div className="grid justify-items-center gap-4 text-center">
@@ -166,12 +166,12 @@ export function PastEvents({
             Recent events
           </h2>
           <p className="max-w-2xl text-lg text-muted">
-            From Ortigas offices to late-night keynote watch parties. Every event below happened,
-            and every link goes to its original page.
+            Our latest meetups, watch parties and hackathon nights. Each one links to its original
+            page.
           </p>
         </div>
         {highlight ? <Highlight event={highlight} /> : null}
-        <ul className="grid divide-y divide-border">
+        <ul className="reveal grid divide-y divide-border">
           {events.map((e) => (
             <EventRow key={e.slug} event={e} />
           ))}

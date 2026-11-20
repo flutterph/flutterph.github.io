@@ -17,7 +17,10 @@ export default function HomePage() {
   const past = getPastEvents(now).filter((e) => e.slug !== highlight?.slug);
 
   return (
-    <main id="main" className="grid gap-3 px-[max(12px,env(safe-area-inset-left))] pb-3">
+    <main
+      id="main"
+      className="grid gap-[var(--sheet-gap)] px-[max(12px,env(safe-area-inset-left))] pb-[var(--sheet-gap)]"
+    >
       <Hero />
       <SupportedBy />
       <Manifesto />

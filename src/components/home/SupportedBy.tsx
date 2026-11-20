@@ -12,7 +12,7 @@ export function SupportedBy() {
   return (
     <section
       aria-labelledby="supported-title"
-      className="mx-auto grid w-full max-w-page justify-items-center gap-5 px-4 py-10 sm:py-12"
+      className="reveal mx-auto grid w-full max-w-page justify-items-center gap-5 px-4 py-6 sm:py-8"
     >
       <h2 id="supported-title" className="text-sm font-medium text-muted">
         Supported by
