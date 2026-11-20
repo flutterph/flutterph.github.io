@@ -1,0 +1,19 @@
+name: Propose a talk
+description: Want to speak at a Flutter PH meetup? Tell us about it.
+title: "[cfp] "
+labels: [talk-proposal]
+body:
+  - type: input
+    id: title
+    attributes: { label: Talk title }
+    validations: { required: true }
+  - type: textarea
+    id: abstract
+    attributes: { label: What will people learn? }
+    validations: { required: true }
+  - type: dropdown
+    id: level
+    attributes: { label: Level, options: [Beginner, Intermediate, Advanced] }
+  - type: input
+    id: contact
+    attributes: { label: How can we reach you? (X, LinkedIn or GitHub) }

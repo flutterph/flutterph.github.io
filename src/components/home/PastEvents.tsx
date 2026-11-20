@@ -43,6 +43,22 @@ const screenIcon = (
 function PlaceBadge({ item }: { item: EventItem }) {
   const base =
     "inline-flex max-w-full items-center gap-1.5 rounded-pill px-2.5 py-1 text-xs font-medium whitespace-nowrap";
+  if (item.format === "open-source") {
+    return (
+      <span className={`${base} bg-surface-2 text-fg`}>
+        <svg
+          viewBox="0 0 24 24"
+          className="size-3.5 shrink-0"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
+        </svg>
+        GitHub
+      </span>
+    );
+  }
   if (item.format === "online") {
     return (
       <span className={`${base} bg-surface-2 text-muted`}>
@@ -52,6 +68,7 @@ function PlaceBadge({ item }: { item: EventItem }) {
     );
   }
   const place = item.country ? (regionNames.of(item.country) ?? item.country) : item.location;
+  if (!place) return null;
   return (
     <span className={`${base} bg-tint-blue text-on-tint`}>
       {item.country ? <span aria-hidden="true">{flag(item.country)}</span> : pinIcon}
@@ -68,25 +85,25 @@ function SpeakerLine({ item }: { item: EventItem }) {
   const sp = item.speakers?.[0];
   if (!sp) return null;
   return (
-    <span className="flex items-center gap-2.5 pt-3">
+    <span className="flex items-center gap-2 pt-2.5">
       {sp.photo ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={sp.photo}
           alt=""
-          width={32}
-          height={32}
-          className="size-8 shrink-0 rounded-full object-cover"
+          width={24}
+          height={24}
+          className="size-6 shrink-0 rounded-full object-cover"
         />
       ) : (
         <span
           aria-hidden="true"
-          className="grid size-8 shrink-0 place-items-center rounded-full bg-ink text-xs font-semibold text-on-ink"
+          className="grid size-6 shrink-0 place-items-center rounded-full bg-ink text-[10px] font-semibold text-on-ink"
         >
           {sp.initials}
         </span>
       )}
-      <span className="grid text-sm leading-tight">
+      <span className="grid text-xs leading-tight">
         <span className="flex items-center gap-1.5">
           <span className="font-medium">{sp.name}</span>
           {sp.href ? (
@@ -94,7 +111,7 @@ function SpeakerLine({ item }: { item: EventItem }) {
               href={sp.href}
               rel="noopener noreferrer"
               aria-label={`${sp.handle ?? sp.name} on X`}
-              className="grid size-4 place-items-center rounded-full text-muted transition-colors hover:text-fg"
+              className="relative z-10 grid size-4 place-items-center rounded-full text-muted transition-colors hover:text-fg"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -116,47 +133,55 @@ function SpeakerLine({ item }: { item: EventItem }) {
 
 function ItemRow({ item, upcoming = false }: { item: EventItem; upcoming?: boolean }) {
   const arrow = item.href ? (
-    <span className="text-muted">
+    <span className="text-muted" aria-hidden="true">
       <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg" />
     </span>
   ) : null;
-  const body = (
-    <>
+  // Stretched link: the title is the link and its ::after covers the row, so the
+  // whole row is clickable while the speaker's X link stays a separate link.
+  const title = item.href ? (
+    <a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="leading-snug font-medium text-pretty after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-focus"
+    >
+      {item.title}
+    </a>
+  ) : (
+    <span className="leading-snug font-medium text-pretty">{item.title}</span>
+  );
+  return (
+    <li
+      data-kind={item.kind}
+      className={`relative grid grid-cols-[4.75rem_minmax(0,1fr)] items-start gap-4 rounded-2xl px-3 py-4 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:px-5 ${item.href ? "group transition-colors hover:bg-surface" : ""}`}
+    >
       <span
-        className={`text-sm font-medium whitespace-nowrap tabular-nums ${upcoming ? "text-fg" : "text-muted"}`}
+        className={`pt-0.5 text-sm font-medium whitespace-nowrap tabular-nums ${upcoming ? "text-fg" : "text-muted"}`}
       >
         {item.monthYear}
       </span>
-      <span className="grid min-w-0">
-        <span className="leading-snug font-medium text-pretty">{item.title}</span>
-        <span className="text-sm leading-snug text-muted">{item.subtitle}</span>
+      <span className="grid min-w-0 pr-6 sm:pr-0">
+        {title}
+        <span className="text-sm leading-snug text-muted">
+          {item.subtitle}
+          {item.count && item.kind === "team" ? (
+            <span className="whitespace-nowrap">
+              {" "}
+              · {item.count.value} {item.count.label}
+            </span>
+          ) : null}
+        </span>
         <SpeakerLine item={item} />
-        <span className="flex items-center gap-3 pt-2.5 sm:hidden">
+        <span className="flex pt-2.5 sm:hidden">
           <PlaceBadge item={item} />
-          {arrow}
         </span>
       </span>
-      <span className="hidden min-w-0 justify-items-end gap-2 sm:grid">
-        <PlaceBadge item={item} />
+      <span className="hidden min-w-0 justify-items-end gap-2.5 sm:grid">
         {arrow}
+        <PlaceBadge item={item} />
       </span>
-    </>
-  );
-  const grid =
-    "grid grid-cols-[4.75rem_minmax(0,1fr)] items-start gap-4 rounded-2xl px-3 py-4 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-center sm:px-5";
-  return (
-    <li data-kind={item.kind}>
-      {item.href ? (
-        <a
-          href={item.href}
-          rel="noopener noreferrer"
-          className={`group ${grid} transition-colors hover:bg-surface`}
-        >
-          {body}
-        </a>
-      ) : (
-        <div className={grid}>{body}</div>
-      )}
+      {arrow ? <span className="absolute top-4 right-3 sm:hidden">{arrow}</span> : null}
     </li>
   );
 }

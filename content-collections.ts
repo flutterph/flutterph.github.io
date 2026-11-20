@@ -315,14 +315,15 @@ const talks = defineCollection({
           date: isoDate,
           endDate: isoDate.optional(),
           event: z.string(),
-          location: z.string(),
+          host: z.string().optional(),
+          location: z.string().optional(),
           /** ISO 3166-1 alpha-2 code, only for events outside the Philippines (shows a flag). */
           country: z
             .string()
             .regex(/^[A-Z]{2}$/, "use a two-letter country code, e.g. ID")
             .optional(),
           format: z.enum(eventFormats),
-          kind: z.enum(["talk", "workshop", "masterclass", "panel"]),
+          kind: z.enum(["talk", "workshop", "talk-and-workshop", "booth", "masterclass", "panel"]),
           speakers: z.array(z.string()).default([]),
           title: z.string().optional(),
           /** The talk's real title when `title` is a varied display title for a repeat. */
@@ -335,6 +336,10 @@ const talks = defineCollection({
           path: ["endDate"],
         }),
     ),
+    /** Demo and workshop repos published alongside the talks. */
+    openSource: z
+      .array(z.object({ date: isoDate, repo: z.string(), for: z.string(), url }))
+      .default([]),
   }),
 });
 

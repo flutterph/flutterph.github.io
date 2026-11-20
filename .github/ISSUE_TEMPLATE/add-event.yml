@@ -1,0 +1,32 @@
+name: Add an event
+description: Put a Flutter PH meetup, workshop or watch party on the site.
+title: "[event] "
+labels: [content, event]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prefer to add it yourself? Create `content/events/<short-name>.mdx` (copy any file in that folder). The fields are explained in docs/content-guide.md.
+  - type: input
+    id: title
+    attributes: { label: Event name }
+    validations: { required: true }
+  - type: input
+    id: when
+    attributes:
+      { label: Date and time (Manila time), placeholder: "2027-01-23, 2:00 PM to 6:00 PM" }
+    validations: { required: true }
+  - type: dropdown
+    id: format
+    attributes: { label: Format, options: [In person, Online, Hybrid] }
+    validations: { required: true }
+  - type: input
+    id: venue
+    attributes: { label: Venue and city (in person or hybrid) }
+  - type: input
+    id: rsvp
+    attributes: { label: RSVP link (Luma, Bevy, etc.) }
+  - type: textarea
+    id: summary
+    attributes: { label: Short description, description: Two sentences is plenty. }
+    validations: { required: true }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@/components/site/Analytics";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { ScrollSpy } from "@/components/site/ScrollSpy";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Footer />
         <SmoothScroll />
         <ScrollSpy />
+        <Analytics />
       </body>
     </html>
   );

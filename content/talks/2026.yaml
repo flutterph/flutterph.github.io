@@ -1,119 +1,165 @@
-# Talks and workshops given by the Flutter PH team at other communities' events.
-# Provided by the organizers on 2026-11-20. `audience` is the reported headcount.
-# Product feedback sessions with Google teams are left out on purpose until
-# confirmed they can be public (Google Cloud Next, Apr 24; Build the Future
-# with Agentic AI, Singapore, Aug 5; I/O Connect Shanghai, Aug 12).
+# Talks, workshops and booths by the Flutter PH team at other communities' events.
+# Source: organizer table, 2026-11-20. Event names are exactly as written.
+# Feedback sessions with Google teams (Cloud Next, I/O Connect Shanghai) are
+# not events and are left out. Shipaton Manila 2026 lives in content/events.
 # `title` is what the site shows. Where the same talk was given more than once,
 # repeats get a varied display title and keep the real one in `officialTitle`.
 year: 2026
 talks:
   - date: 2026-02-21
-    event: Flutter Fusion (GDG Surabaya and AI/ML Surabaya)
+    event: Flutter Fusion Conference
+    host: GDG Surabaya
     location: Surabaya
     country: ID
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 100
+    url: https://gdg.community.dev/events/details/google-gdg-surabaya-presents-flutter-fusion-conference/
+    speakers: [joshua-de-guzman]
   - date: 2026-03-14
     event: "Digital Conscience: Ethical Wake-Up Call for Every Generation"
     location: Cebu City
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Agentic Coding for Flutter with Antigravity and Gemini 3 Pro"
     officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 400
+    speakers: [joshua-de-guzman]
   - date: 2026-03-21
-    event: Build with AI Manila
+    event: "Build with AI 2026: Break the Pattern"
+    host: GDG Manila
     location: Taguig
     format: in-person
     kind: workshop
-    speakers: [joshua-de-guzman]
     title: "Hands-on: Build a Flutter App with Antigravity and Gemini 3 Pro"
     officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 273
+    url: https://gdg.community.dev/events/details/google-gdg-manila-presents-build-with-ai-2026-break-the-pattern/
+    speakers: [joshua-de-guzman]
   - date: 2026-05-09
-    event: Build with AI x IWD (GDG Baguio)
+    event: Build with AI x IWD 2026
+    host: GDG Baguio
     location: Baguio City
     format: in-person
     kind: workshop
-    speakers: [joshua-de-guzman]
     title: "Agentic Flutter Development with Antigravity and Gemini 3 Pro"
     officialTitle: "New Era of Agentic Coding for Flutter using Antigravity and Gemini 3 Pro"
     audience: 217
-  - date: 2026-06-06
-    event: "GDG Cloud Manila: Build with AI"
-    location: Makati City
-    format: in-person
-    kind: talk
+    url: https://gdg.community.dev/events/details/google-gdg-baguio-presents-build-with-ai-x-iwd-2026/
     speakers: [joshua-de-guzman]
+  - date: 2026-06-06
+    event: "GDG Cloud Manila Build with AI: The Future of AI & Research"
+    host: GDG Cloud Manila
+    location: Makati
+    format: in-person
+    kind: talk-and-workshop
     title: "Deploy Gemma 4 Models on Google Cloud Run"
     audience: 223
-  - date: 2026-07-18
-    event: AI Pilipinas
-    location: Philippines
-    format: in-person
-    kind: masterclass
+    url: https://gdg.community.dev/events/details/google-gdg-cloud-manila-presents-gdg-cloud-manila-build-with-ai-the-future-of-ai-amp-research/
     speakers: [joshua-de-guzman]
+  - date: 2026-07-18
+    event: Claude Code Masterclass
+    host: AI Pilipinas
+    format: in-person
+    kind: workshop
     title: "Building Flutter Apps with Claude Code"
     officialTitle: "Building Flutter apps with Claude Code"
     audience: 70
+    speakers: [joshua-de-guzman]
+  - date: 2026-08-05
+    event: Build with Gemini 2026
+    host: Google Cloud
+    location: Singapore
+    country: SG
+    format: in-person
+    kind: booth
+    title: "Gemini Omni Demo Booth"
+    officialTitle: "Gemini Omni demo booth"
+    audience: 300
+    url: https://cloud.google.com/events/build-with-gemini-2026
+    speakers: [joshua-de-guzman]
   - date: 2026-09-05
-    event: Google I/O Extended Cagayan de Oro (GDG CDO)
+    event: Google I/O Extended Cagayan de Oro
+    host: GDG Cagayan de Oro
     location: Cagayan de Oro
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Designing for the Agentic UI with GenUI"
     audience: 110
+    url: https://gdg.community.dev/events/details/google-gdg-cagayan-de-oro-presents-iox-meetup-2026/
+    speakers: [joshua-de-guzman]
   - date: 2026-09-12
-    event: GDG Cloud Manila I/O Extended
+    event: GDG Cloud Manila I/O Extended 2026
+    host: GDG Cloud Manila
     location: Online
     format: online
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Building AI Agents using ADK & agents-cli in Under 20 Minutes"
     officialTitle: "Building AI Agents using ADK & agents-cli in under 20 minutes"
     audience: 111
+    url: https://gdg.community.dev/events/details/google-gdg-cloud-manila-presents-gdg-cloud-manila-io-extended-2026/
+    speakers: [joshua-de-guzman]
   - date: 2026-10-17
-    event: DevFest Cloud Manila
+    event: DevFest Cloud Manila 2026
+    host: GDG Cloud Manila
     location: Pasig
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Powering Generative UI in the Cloud"
     audience: 80
+    url: https://gdg.community.dev/events/details/google-gdg-cloud-manila-presents-devfest-cloud-manila-2026/
+    speakers: [joshua-de-guzman]
   - date: 2026-11-07
-    event: DevFest Baguio
+    event: DevFest Baguio 2026
+    host: GDG Baguio
     location: Baguio City
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Ship Agents Without Reading the Docs"
     audience: 500
+    url: https://gdg.community.dev/events/details/google-gdg-baguio-presents-devfest-baguio-2026/
+    speakers: [joshua-de-guzman]
   - date: 2026-11-28
-    event: DevFest Bacolod
+    event: "DevFest Bacolod 2026: Professional Network Day"
+    host: GDG Bacolod
     location: Bacolod
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "Ship Agents by Talking to Your Agent using agents-cli"
     officialTitle: "Ship agents by talking to your agent using agents-cli"
-  - date: 2026-11-28
-    endDate: 2026-11-29
-    event: an event in Cebu
+    url: https://gdg.community.dev/events/details/google-gdg-bacolod-presents-devfest-bacolod-2026-professional-network-day/
+    speakers: [joshua-de-guzman]
+  - date: 2026-11-29
+    event: DevFest Cebu 2026
+    host: GDG Cebu
     location: Cebu
     format: in-person
     kind: talk
+    # TODO(content): session title to be confirmed.
+    url: https://gdg.community.dev/events/details/google-gdg-cebu-presents-devfest-cebu-2026/
     speakers: [joshua-de-guzman]
-    # TODO(content): session title not recorded yet.
   - date: 2026-12-01
-    event: DevFest Zamboanga
+    event: DevFest ZamPen 2026
+    host: GDG Zamboanga
     location: Zamboanga City
     format: in-person
     kind: talk
-    speakers: [joshua-de-guzman]
     title: "From Prompt to Deployed Agent with agents-cli"
     officialTitle: "Ship agents by talking to your agent using agents-cli"
+    url: https://gdg.community.dev/events/details/google-gdg-zamboanga-presents-devfest-zampen-2026-build-secure-scale-developers-and-builders-in-the-agentic-era/
+    speakers: [joshua-de-guzman]
+
+openSource:
+  - date: 2026-06-06
+    repo: agents_deploy_gemma4
+    for: Gemma 4 on Cloud Run workshop
+    url: https://github.com/joshuadeguzman/agents_deploy_gemma4
+  - date: 2026-10-17
+    repo: agents-a2ui-cdo
+    for: Generative UI talk and demo
+    url: https://github.com/joshuadeguzman/agents-a2ui-cdo
+  - date: 2026-11-07
+    repo: agents-cli-baguio
+    for: DevFest Baguio demo
+    url: https://github.com/joshuadeguzman/agents-cli-baguio

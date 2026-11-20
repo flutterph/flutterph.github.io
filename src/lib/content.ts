@@ -39,7 +39,7 @@ export function getArchiveEvents() {
     .toSorted((a, b) => b.date.localeCompare(a.date));
 }
 
-export type EventFormat = SiteEvent["format"];
+export type EventFormat = SiteEvent["format"] | "open-source";
 
 /** One row in the events list: a Flutter PH event or a talk our team gave elsewhere. */
 export type EventItem = {
@@ -108,6 +108,8 @@ const eventTypeLabel: Record<SiteEvent["type"], string> = {
 const talkKindLabel = {
   talk: "Talk",
   workshop: "Workshop",
+  "talk-and-workshop": "Talk and workshop",
+  booth: "Booth",
   masterclass: "Masterclass",
   panel: "Panel",
 } as const;
@@ -139,10 +141,10 @@ export function getEventItems(now = new Date()): { upcoming: EventItem[]; past: 
     key: `t-${t.date}-${i}`,
     kind: "team",
     title: t.title ?? "Session title to be announced",
-    subtitle: `${talkKindLabel[t.kind]} at ${t.event}`,
+    subtitle: [talkKindLabel[t.kind], t.event, t.host].filter(Boolean).join(" · "),
     day: t.date,
     monthYear: monthYearOf(t.date),
-    location: t.location,
+    location: t.location ?? "",
     format: t.format,
     country: t.country,
     href: t.url,
@@ -150,7 +152,21 @@ export function getEventItems(now = new Date()): { upcoming: EventItem[]; past: 
     speakers: t.speakers.map(getSpeaker).filter((x): x is Speaker => Boolean(x)),
     upcoming: (t.endDate ?? t.date) >= today,
   }));
-  const all = [...community, ...team];
+  const repos: (EventItem & { upcoming: boolean })[] = allTalks
+    .flatMap((y) => y.openSource)
+    .map((r) => ({
+      key: `r-${r.repo}`,
+      kind: "team",
+      title: r.repo,
+      subtitle: `Open source · ${r.for}`,
+      day: r.date,
+      monthYear: monthYearOf(r.date),
+      location: "GitHub",
+      format: "open-source",
+      href: r.url,
+      upcoming: false,
+    }));
+  const all = [...community, ...team, ...repos];
   const strip = (i: EventItem & { upcoming: boolean }): EventItem => {
     const { upcoming, ...rest } = i;
     void upcoming;
