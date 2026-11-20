@@ -25,6 +25,9 @@ for (const route of keyRoutes) {
       await page.screenshot({
         path: `test-results/screenshots/${route.name}-${theme}-${info.project.name}.png`,
         fullPage: true,
+        // CSS-pixel scale keeps tall pages under WebKit's 32,767 px screenshot limit
+        // on high-density phone profiles.
+        scale: "css",
       });
       expect(errors).toEqual([]);
     });
