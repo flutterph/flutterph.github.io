@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { Analytics } from "@/components/site/Analytics";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
-import { ScrollSpy } from "@/components/site/ScrollSpy";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { googleSans, googleSansCode } from "./fonts";
 import { themeScript } from "./theme-script";
@@ -45,7 +44,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Footer />
         <SmoothScroll />
-        <ScrollSpy />
         <Analytics />
       </body>
     </html>

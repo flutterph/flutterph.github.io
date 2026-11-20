@@ -4,6 +4,7 @@ import { PillLink } from "@/components/ui/PillLink";
 import { Sheet } from "@/components/ui/Sheet";
 import type { EventItem, SiteEvent } from "@/lib/content";
 import { formatEventRange } from "@/lib/dates";
+import { eventPath } from "@/lib/event-path";
 import s from "./events.module.css";
 
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
@@ -90,6 +91,7 @@ function SpeakerLine({ item }: { item: EventItem }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={sp.photo}
+          loading="lazy"
           alt=""
           width={24}
           height={24}
@@ -142,8 +144,8 @@ function ItemRow({ item, upcoming = false }: { item: EventItem; upcoming?: boole
   const title = item.href ? (
     <a
       href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={item.kind === "team" ? "_blank" : undefined}
+      rel={item.kind === "team" ? "noopener noreferrer" : undefined}
       className="leading-snug font-medium text-pretty after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-focus"
     >
       {item.title}
@@ -281,13 +283,11 @@ function Highlight({ event }: { event: SiteEvent }) {
             >
               {event.registered}
             </span>
-            <span className="text-on-ink-muted">builders joined</span>
+            <span className="text-on-ink-muted">registrations</span>
           </p>
-          {event.rsvpUrl ? (
-            <PillLink href={event.rsvpUrl} variant="on-dark" className="w-fit">
-              View on Luma <ArrowUpRight />
-            </PillLink>
-          ) : null}
+          <PillLink href={eventPath(event.slug)} variant="on-dark" className="w-fit">
+            Read the event recap
+          </PillLink>
         </div>
       </div>
       {event.sponsors.length > 0 ? (
@@ -305,6 +305,7 @@ function Highlight({ event }: { event: SiteEvent }) {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={sp.logo}
+                    loading="lazy"
                     alt={sp.name}
                     height={28}
                     className="h-6 w-auto brightness-0 invert sm:h-7"

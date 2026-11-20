@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { allArchives, allEvents, allPartners, allPeople, allTalks } from "content-collections";
 import { manilaDateParts, manilaDayKey } from "./dates";
+import { eventPath } from "./event-path";
 import { pastEvents, upcomingEvents, visible } from "./visibility";
 
 export type SiteEvent = (typeof allEvents)[number];
@@ -132,7 +133,7 @@ export function getEventItems(now = new Date()): { upcoming: EventItem[]; past: 
       monthYear: `${p.month} ${p.year}`,
       location: e.format === "online" ? "Online" : (e.city ?? e.venue?.name ?? ""),
       format: e.format,
-      href: e.rsvpUrl,
+      href: eventPath(e.slug),
       count: e.registered ? { value: e.registered, label: "registered" } : undefined,
       upcoming: Date.parse(e.endsAt) > now.getTime(),
     };

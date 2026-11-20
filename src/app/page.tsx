@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ScrollSpy } from "@/components/site/ScrollSpy";
 import { AiSection } from "@/components/home/AiSection";
 import { Hero } from "@/components/home/Hero";
 import { JoinPanel } from "@/components/home/JoinPanel";
@@ -107,6 +108,7 @@ export default function HomePage() {
         archive={getArchiveEvents()}
       />
       <JoinPanel />
+      <ScrollSpy />
     </main>
   );
 }
