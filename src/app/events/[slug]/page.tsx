@@ -107,11 +107,15 @@ export default async function EventPage({ params }: Props) {
           __html: JSON.stringify(eventSchema(event)).replace(/</g, "\\u003c"),
         }}
       />
-      <Link href="/#events" prefetch={false} className="font-medium text-link underline">
-        All community events
-      </Link>
-      <article className="mt-5 grid gap-8 rounded-sheet bg-bg px-6 py-10 sm:px-12">
+      <article className="grid gap-8 rounded-sheet bg-bg px-6 py-10 sm:px-12">
         <header className="grid gap-3">
+          <Link
+            href="/#events"
+            prefetch={false}
+            className="inline-flex min-h-8 w-fit items-center gap-2 text-sm font-medium text-muted hover:text-fg hover:underline"
+          >
+            <span aria-hidden="true">←</span> Back to events
+          </Link>
           <p className="text-sm font-medium text-muted">
             {event.cancelled ? "Cancelled event" : past ? "Past event" : "Community event"} ·{" "}
             {formats[event.format]}
