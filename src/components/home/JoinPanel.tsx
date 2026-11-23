@@ -7,6 +7,7 @@ import { site, social } from "@/lib/site";
 export function JoinPanel() {
   return (
     <section
+      id="join-community"
       aria-labelledby="join-title"
       className="reveal-sheet relative mx-auto w-full max-w-page overflow-hidden rounded-sheet bg-ink-soft px-6 py-16 text-white sm:px-12 sm:py-24"
     >
@@ -18,11 +19,11 @@ export function JoinPanel() {
           ))}
         </svg>
         <h2 id="join-title" className="text-4xl font-semibold tracking-[var(--tracking-display)]">
-          Come build with us.
+          How do I join Flutter Philippines?
         </h2>
         <p className="max-w-xl text-lg text-on-ink-muted">
-          Whether you shipped your tenth app or installed Flutter last night, there&apos;s a seat
-          for you. Sama-sama tayo.
+          Join our Facebook group to ask questions and share your projects. For meetup invites,
+          follow Flutter Philippines on Luma. Beginners are welcome. Sama-sama tayo.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <PillLink href={site.joinUrl} variant="on-dark" size="lg">

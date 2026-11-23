@@ -4,7 +4,7 @@ All content lives in `content/`. The build checks every file against the schemas
 
 ## Events (`content/events/*.mdx`)
 
-Flutter PH's own events. The file name becomes the event's ID.
+Flutter PH's own events. The file name becomes a public URL: `content/events/shipaton-manila-2026.mdx` is served at `/events/shipaton-manila-2026`. Keep that name stable when updating an event.
 
 ```mdx
 ---
@@ -26,6 +26,8 @@ sponsors: # optional, official logos in public/images/sponsors/
 
 A longer description in Markdown.
 ```
+
+After an event, update the Markdown body with a short recap: who spoke, what they demonstrated, and where to find the materials. Link the speaker’s original demo repository or slides when available. Use the optional `resources.slides`, `resources.recording` and `resources.photos` fields for event materials. If a watch party has only the conference broadcast, label it as such in the body rather than calling it a local recording. Distinguish the published program from what an organizer can confirm actually happened.
 
 Upcoming or past is worked out from `endsAt` in Manila time. The event with the most registrations is shown as the featured event.
 

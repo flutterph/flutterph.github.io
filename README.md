@@ -47,9 +47,13 @@ To try it on your phone, run `pnpm dev -H 0.0.0.0` and open `http://<your comput
 | `pnpm test:e2e`            | Accessibility (axe) in light and dark, legacy URLs, at 360 to 1440 px in Chromium and WebKit |
 | `pnpm test:perf`           | Scroll smoothness in Chromium and WebKit, fails on jank or layout shift                      |
 | `pnpm lighthouse`          | Lighthouse mobile against the production build, 95+ budgets                                  |
-| `pnpm check`               | Everything above that CI runs on every pull request                                          |
+| `pnpm check`               | Typecheck, lint, formatting, unit tests, preview build, and browser tests                    |
 
 Run `pnpm build` (or `pnpm build:preview`) before `pnpm test:e2e` and `pnpm test:perf`.
+
+For Lighthouse, run `pnpm build && pnpm lighthouse` with port 3000 free. CI audits the production homepage and Shipaton Manila event page three times each and keeps the HTML and JSON reports in the `lighthouse-production` artifact, including when a budget fails.
+
+For post-deployment indexing checks and a search traffic baseline, see [Check search visibility](docs/search-performance.md).
 
 ## How it's built
 
